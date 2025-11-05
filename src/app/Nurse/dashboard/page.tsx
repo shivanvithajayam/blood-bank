@@ -39,7 +39,6 @@ const Dashboard: React.FC = () => {
         onAnimationComplete={handleAnimationComplete}
         className="text-2xl mb-8"
       />
-      <h1>Welcome Nurse!</h1>
       <div className="content">
         <div className="charts">
           {bloodData.map((data, index) => (
