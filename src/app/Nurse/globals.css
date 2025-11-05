@@ -1,0 +1,80 @@
+/* Existing styles from before... */
+
+/* Side Navigation */
+.side-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-nav li {
+  margin-bottom: 20px;
+}
+
+.side-nav a {
+  color: #FFFFFF; /* White */
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.side-nav a:hover {
+  color: #0f0ff0; /* Blue */
+}
+
+/* Page Content */
+.page-content {
+  margin-left: 220px; /* Space for side nav */
+  padding: 20px;
+}
+
+/* Request Page */
+.request-page {
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+}
+
+.request-page form {
+  max-width: 400px;
+}
+
+/* Tables */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+}
+
+.requests-table th, .requests-table td {
+  border: 1px solid #0f0ff0; /* Blue */
+  padding: 10px;
+  text-align: left;
+}
+
+.requests-table th {
+  background-color: #f00f0f; /* Red */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .side-nav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .page-content {
+    margin-left: 0;
+  }
+}
