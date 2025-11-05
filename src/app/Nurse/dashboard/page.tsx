@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 import BlurText from './BlurText';
+import './dashboard.css';
 const Dashboard: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 

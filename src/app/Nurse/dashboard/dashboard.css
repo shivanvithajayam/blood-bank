@@ -1,0 +1,118 @@
+.dashboard {
+  font-family: Arial, sans-serif;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard h1 {
+  text-align: center;
+  color: #00563e; /* Dark green */
+  margin-bottom: 20px;
+  filter: blur(5px); /* Blur effect */
+  transition: filter 0.5s ease;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+}
+
+.charts {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Spotlight Card Effect */
+.spotlight-card {
+  background-color: transparent; /* Transparent holder */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: #FFFFFF; /* White */
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card:hover {
+  box-shadow: 0 0 20px rgba(15, 15, 240, 0.5); /* Blue glow */
+}
+
+.spotlight-card h3 {
+  margin: 0 0 10px 0;
+  color: #660001; /* Dark red */
+}
+
+/* 3D Chart Effect */
+.chart-3d-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  transform: rotateX(20deg) rotateY(-20deg);
+  border-radius: 50%;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(240, 15, 15, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s;
+}
+
+.chart-3d-wrapper:hover {
+  transform: rotateX(10deg) rotateY(-10deg);
+}
+
+/* Amount Tooltip */
+.amount-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF; /* White */
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #0f0ff0; /* Blue */
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+
+.spotlight-card:hover .amount-tooltip {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+  .charts {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}

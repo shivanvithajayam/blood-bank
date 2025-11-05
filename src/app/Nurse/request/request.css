@@ -1,0 +1,121 @@
+.request-page {
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-page h1 {
+  color: #660001; /* Dark red */
+  margin-bottom: 30px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.request-page form {
+  background-color: #000000; /* Black */
+  border: 2px solid #0f0ff0; /* Blue border */
+  border-radius: 8px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(15, 15, 240, 0.3); /* Blue glow */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0ff080; /* Cyan-green */
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.radio-group label:hover {
+  color: #00563e; /* Dark green */
+}
+
+.radio-group input[type="radio"] {
+  accent-color: #f00f0f; /* Red for radio buttons */
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #FFFFFF; /* White */
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #0f0ff0; /* Blue border */
+  border-radius: 6px;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #f00f0f; /* Red on focus */
+  box-shadow: 0 0 8px rgba(240, 15, 15, 0.5); /* Red glow */
+  outline: none;
+}
+
+button {
+  background-color: #f00f0f; /* Red */
+  color: #FFFFFF; /* White */
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: center;
+  width: 100%;
+  max-width: 200px;
+}
+
+button:hover {
+  background-color: #00563e; /* Dark green */
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .request-page {
+    padding: 20px 10px;
+  }
+  .request-page form {
+    padding: 20px;
+    max-width: 100%;
+  }
+  .radio-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  button {
+    max-width: 100%;
+  }
+}
