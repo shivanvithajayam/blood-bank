@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
+import './dashboard.css'; // Import dashboard-specific CSS
 import BlurText from './BlurText';
-import './dashboard.css';
 const Dashboard: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -40,6 +40,7 @@ const Dashboard: React.FC = () => {
         onAnimationComplete={handleAnimationComplete}
         className="text-2xl mb-8"
       />
+      
       <div className="content">
         <div className="charts">
           {bloodData.map((data, index) => (
@@ -49,24 +50,22 @@ const Dashboard: React.FC = () => {
               onMouseMove={handleMouseMove}
             >
               <h3>{data.type}</h3>
-              <div className="chart-3d-wrapper">
-                <PieChart width={100} height={100}>
-                  <Pie
-                    data={[
-                      { name: 'Available', value: data.available },
-                      { name: 'Unavailable', value: 100 - data.available },
-                    ]}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={20}
-                    outerRadius={40}
-                    dataKey="value"
-                  >
-                    <Cell fill="#f00f0f" />
-                    <Cell fill="#0ff080" />
-                  </Pie>
-                </PieChart>
-              </div>
+              <PieChart width={150} height={150}>
+                <Pie
+                  data={[
+                    { name: 'Available', value: data.available },
+                    { name: 'Unavailable', value: 100 - data.available },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={30}
+                  outerRadius={60}
+                  dataKey="value"
+                >
+                  <Cell fill="#f00f0f" />
+                  <Cell fill="#0ff080" />
+                </Pie>
+              </PieChart>
               <div className="amount-tooltip">{data.available} units</div>
             </div>
           ))}

@@ -1,3 +1,5 @@
+/* Existing styles from before... */
+
 /* Side Navigation */
 .side-nav {
   position: fixed;
@@ -34,6 +36,35 @@
 .page-content {
   margin-left: 220px; /* Space for side nav */
   padding: 20px;
+}
+
+/* Request Page */
+.request-page {
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+}
+
+.request-page form {
+  max-width: 400px;
+}
+
+/* Tables */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+}
+
+.requests-table th, .requests-table td {
+  border: 1px solid #0f0ff0; /* Blue */
+  padding: 10px;
+  text-align: left;
+}
+
+.requests-table th {
+  background-color: #f00f0f; /* Red */
 }
 
 /* Responsive */

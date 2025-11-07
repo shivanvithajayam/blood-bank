@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
-
+import "./history.css";
 // Lazy load the component
-const RequestHistory = dynamic(() => import('../components/RequestHistory'), {
+const RequestHistory = dynamic(() => import('../../components/RequestHistory'), {
   loading: () => <p>Loading request history...</p>,
 });
 
