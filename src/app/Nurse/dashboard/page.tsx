@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
+import './dashboard.css'; // Import dashboard-specific CSS
 import BlurText from './BlurText';
-import './dashboard.css';
+import Beams from '../../beams';
 const Dashboard: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -32,14 +33,39 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard">
+      <div className="background-div" style={{ width: '100%', height: '600px' }}>
+            <Beams
+              beamWidth={1}
+              beamHeight={20}
+              beamNumber={9}
+              lightColor="#F00F0F"    // changed from white to red 660001
+              speed={2}
+              noiseIntensity={2}
+              scale={0.2}
+              rotation={30}
+            />
+            <Beams
+              beamWidth={1}
+              beamHeight={20}
+              beamNumber={9}
+              lightColor="#F00F0F"    // changed from white to red 660001
+              speed={2}
+              noiseIntensity={2}
+              scale={0.2}
+              rotation={30}
+            />
+
+      </div>
+      <div className="heading">
       <BlurText
         text="Welcome to the Nurse Dashboard!"
         delay={150}
-        animateBy="letters"
+        animateBy="words"
         direction="top"
         onAnimationComplete={handleAnimationComplete}
-        className="text-2xl mb-8"
       />
+      </div>
+      
       <div className="content">
         <div className="charts">
           {bloodData.map((data, index) => (
@@ -49,24 +75,23 @@ const Dashboard: React.FC = () => {
               onMouseMove={handleMouseMove}
             >
               <h3>{data.type}</h3>
-              <div className="chart-3d-wrapper">
-                <PieChart width={100} height={100}>
-                  <Pie
-                    data={[
-                      { name: 'Available', value: data.available },
-                      { name: 'Unavailable', value: 100 - data.available },
-                    ]}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={20}
-                    outerRadius={40}
-                    dataKey="value"
-                  >
-                    <Cell fill="#f00f0f" />
-                    <Cell fill="#0ff080" />
-                  </Pie>
-                </PieChart>
-              </div>
+              <PieChart width={150} height={150}>
+                <Pie
+                  data={[
+                    { name: 'Available', value: data.available },
+                    { name: 'Unavailable', value: 100 - data.available },
+                  ]}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={30}
+                  outerRadius={60}
+                  dataKey="value"
+                  animationDuration={3000}
+                >
+                  <Cell fill="#f00f0f" />
+                  <Cell fill="#0ff080" />
+                </Pie>
+              </PieChart>
               <div className="amount-tooltip">{data.available} units</div>
             </div>
           ))}
