@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import './request.css';
+import Orb from './Orb';
+import Beams from '../../beams'; 
 
 const RequestPage: React.FC = () => {
   const [requestType, setRequestType] = useState<'emergency' | 'surgery'>('emergency');
@@ -58,7 +60,7 @@ const RequestPage: React.FC = () => {
 
   return (
     <div className="request-page">
-      <h1>Request Blood</h1>
+    <h1>Request Blood</h1>
       <form onSubmit={handleSubmit}>
         <div className="radio-group">
           <label>

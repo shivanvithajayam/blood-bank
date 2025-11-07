@@ -1,3 +1,7 @@
+
+body {
+ background-color: #000000; /* black */
+}
 .request-page {
   background-color: #000000; /* Black */
   color: #FFFFFF; /* White */
@@ -7,18 +11,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 0; /* Ensure the page container has positioning for z-index */
 }
-
 .request-page h1 {
   color: #660001; /* Dark red */
   margin-bottom: 30px;
   font-size: 2rem;
   text-align: center;
+  z-index: 2;
+  position: relative;
 }
 
 .request-page form {
   background-color: #000000; /* Black */
   border: 2px solid #0f0ff0; /* Blue border */
+  top:0;
+  left:0;
   border-radius: 8px;
   padding: 30px;
   width: 100%;
@@ -27,6 +36,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  z-index: 5;
+  position: relative; /* Enable z-index for layering */
 }
 
 .radio-group {

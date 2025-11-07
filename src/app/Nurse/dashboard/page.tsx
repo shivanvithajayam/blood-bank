@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 import './dashboard.css'; // Import dashboard-specific CSS
 import BlurText from './BlurText';
+import Beams from '../../beams';
 const Dashboard: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -32,14 +33,38 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard">
+      <div className="background-div" style={{ width: '100%', height: '600px' }}>
+            <Beams
+              beamWidth={1}
+              beamHeight={20}
+              beamNumber={9}
+              lightColor="#F00F0F"    // changed from white to red 660001
+              speed={2}
+              noiseIntensity={2}
+              scale={0.2}
+              rotation={30}
+            />
+            <Beams
+              beamWidth={1}
+              beamHeight={20}
+              beamNumber={9}
+              lightColor="#F00F0F"    // changed from white to red 660001
+              speed={2}
+              noiseIntensity={2}
+              scale={0.2}
+              rotation={30}
+            />
+
+      </div>
+      <div className="heading">
       <BlurText
         text="Welcome to the Nurse Dashboard!"
         delay={150}
-        animateBy="letters"
+        animateBy="words"
         direction="top"
         onAnimationComplete={handleAnimationComplete}
-        className="text-2xl mb-8"
       />
+      </div>
       
       <div className="content">
         <div className="charts">
@@ -61,6 +86,7 @@ const Dashboard: React.FC = () => {
                   innerRadius={30}
                   outerRadius={60}
                   dataKey="value"
+                  animationDuration={3000}
                 >
                   <Cell fill="#f00f0f" />
                   <Cell fill="#0ff080" />
