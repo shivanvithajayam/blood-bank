@@ -1,22 +1,28 @@
-/* keep existing rules you already have, then add/update these */
+/* Keep existing rules you already have, then add/update these */
 body {
- background-color: #000000; /* black */
+  background-color: #000000; /* black */
+  /* Ensure no default browser margins on the body */
+  margin: 0; 
+  padding: 0;
 }
 
 .page-root {
   min-height: 100vh;
   background-color: black;
+  display: flex; /* Establishes a flex container */
+  flex-direction: column; /* Stacks sections vertically */
 }
 
-/* container already defines position: relative */
-.container {
+/* Section 1: 100vh - Logo and Rotating Text */
+.section-1 {
   position: relative;
   width: 100%;
-  height: 600px; /* match the background-div height */
-  background-color: #000000;
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Uses Flexbox to center content */
+  align-items: center; /* Centers children vertically on the cross axis */
+  justify-content: center; /* Centers children horizontally on the main axis */
 }
 
-/* background-div stays behind content */
 .background-div {
   position: absolute;
   top: 0;
@@ -27,66 +33,100 @@ body {
   z-index: 1;
 }
 
-/* overlay-div becomes a centered column layout */
-.overlay-div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 768px;
-  color: #ffffff;
+.logo-and-text {
+  position: relative;
   z-index: 2;
+  display: flex; /* Uses Flexbox to align logo and text wrapper */
+  align-items: center; /* Centers them vertically relative to each other */
+  gap: 1rem; /* Controls space between the children */
+  color: #ffffff;
+}
+
+/* Section 2: 100vh - Login beside Stacks */
+.section-2 {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Uses Flexbox to place login and stacks side-by-side */
+  justify-content: space-between; /* Distributes space evenly between the two main divs */
+  align-items: center; /* Centers both columns vertically within the section */
+  padding: 2rem;
+  background-color: #000000;
+  position: relative;
+}
+
+.login-section {
+  flex: 1; /* Allows this section to grow and take up half the space */
+  text-align: left;
+  color: #ffffff;
+  /* Added display flex to structure internal elements */
   display: flex;
-  flex-direction: column;       /* stack text then button */
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;                 /* spacing between text and button */
-  padding: 1rem;
-  box-sizing: border-box;
-  pointer-events: none;         /* allow clicks to pass through if needed */
+  flex-direction: column; 
+  top:0;
 }
 
-/* make the interactive child accept pointer events */
-.overlay-div .button-row,
-.overlay-div a,
-.overlay-div button {
-  pointer-events: auto;
-}
-
-/* text styling */
 .overlay-text {
-  text-align: center;
   font-size: 2rem;
   line-height: 1.5;
-  margin: 0;
+  margin: 10px 0;
+  top: 0;
   font-family: 'Inter', sans-serif;
   color: #fff;
 }
-
-/* button wrapper to control width/centering */
-.button-row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-/* example button styles — adjust to taste */
 .your-button-class {
-  background: #c96f70;
-  color: #fff;
-  border: none;
-  padding: 0.625rem 1.25rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-.your-button-class {
-  background: #00563E; /* changed to 00563E */
+  background: #00563E;
   color: #ffffff;
   border: none;
   padding: 0.625rem 1.25rem;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.stacks-section {
+  flex: 1; /* Allows this section to grow and take up the other half the space */
+  position: relative; /* Ensure relative positioning for CardSwap children */
+  display: flex; /* Uses Flexbox to center CardSwap component */
+  justify-content: start; /* Aligns CardSwap to the left */
+  align-items: center;
+  height: 100%; /* Full height of section */
+  color: white;
+  font-size: 24px;
+  left:0;
+  
+}
+
+/* Section 3: 50vh - Contact Us */
+.section-3 {
+  width: 100%;
+  height: 50vh; /* Half viewport height */
+  display: flex; /* Uses Flexbox to center content */
+  align-items: center; /* Centers children vertically */
+  justify-content: center; /* Centers children horizontally */
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-2 {
+    flex-direction: column; /* Stacks login and stacks vertically on mobile */
+    gap: 2rem; /* Adds space between them */
+  }
+  .logo-and-text {
+    flex-direction: column; /* Stacks logo and text vertically on mobile */
+    gap: 0.5rem;
+  }
 }
