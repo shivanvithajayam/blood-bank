@@ -91,8 +91,8 @@ body {
   height: 100%; /* Full height of section */
   color: white;
   font-size: 24px;
-  left:0;
-  
+  left: 0;
+  overflow: hidden;
 }
 
 /* Section 3: 50vh - Contact Us */
