@@ -57,11 +57,13 @@ export default function HomePage() {
                 </Card>
                 <Card>
                   <h3>Our Services</h3>
-                  <p>Your content here</p>
+                  <p>Bloodline provides a suite of essential services designed to bring efficiency and integrity to the blood management lifecycle:
+                  <strong>Real-Time Inventory Tracking:</strong> 
+                  We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
                 </Card>
                 <Card>
-                  <h3>Stacks Used</h3>
-                  <p>Your content here</p>
+                  <h3>Our Vission:A Future of zero waste</h3>
+                  <p>Our long-term vision for Bloodline is to create a national or global network where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
                 </Card>
               </CardSwap>
             </div>
