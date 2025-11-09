@@ -1,21 +1,30 @@
 @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
-  background: #1b1810;
+  background: #1b181000;
 }
 ::-webkit-selection {
-  background: #1b1810;
+  background: #1b181000;
 }
 ::-moz-selection {
-  background: #1b1810;
+  background: #1b181000;
 }
 body {
-  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0);
   font-family: 'Inter UI', sans-serif;
   margin: 0;
   padding: 20px;
 }
+.background-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1; /* Push to the very back */
+}
 .page {
-  background: #000000;
+  background: #00000000;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
@@ -35,12 +44,14 @@ body {
   height: 320px;
   margin: 0 auto;
   width: 640px;
+  z-index: 1;
 }
 @media (max-width: 767px) {
   .container {
     flex-direction: column;
     height: 630px;
     width: 320px;
+    z-index: 1;
   }
 }
 .left {
@@ -97,6 +108,7 @@ path {
 .form {
   margin: 40px;
   position: absolute;
+  z-index: 2; /* Optional: Ensure form is above other elements if needed */
 }
 label {
   color: #c2c2c5;
