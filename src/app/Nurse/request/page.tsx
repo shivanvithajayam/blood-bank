@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import './request.css';
-import Orb from './Orb';
 import Beams from '../../beams'; 
+import { useCallback } from 'react';
 
 const RequestPage: React.FC = () => {
   const [requestType, setRequestType] = useState<'emergency' | 'surgery'>('emergency');
@@ -49,19 +49,36 @@ const RequestPage: React.FC = () => {
     { type: 'O+', available: 60 },
     { type: 'O-', available: 35 },
   ];
+  function debounce<T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func(...args), delay);
+  };
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ requestType, bloodType, amount, nurseId });
     alert('Blood request submitted!');
   };
+  const debouncedSubmit = useCallback(
+  debounce((event: React.FormEvent<HTMLFormElement>) => {
+    event.persist();
+    handleSubmit(event);
+  }, 500),
+  []
+);
+
+
+  //const debouncedSubmit = debounce(handleSubmit, 500);
 
   if (loading) return <p>Loading blood data...</p>;
 
   return (
     <div className="request-page">
     <h1>Request Blood</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={debouncedSubmit}>
         <div className="radio-group">
           <label>
             <input
