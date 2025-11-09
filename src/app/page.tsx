@@ -43,6 +43,8 @@ export default function HomePage() {
             </div>
             <div className="stacks-section">
               <CardSwap
+                width={500}
+                height={300}
                 cardDistance={60}
                 verticalDistance={70}
                 delay={5000}
