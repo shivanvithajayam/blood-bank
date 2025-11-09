@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="heading">
       <BlurText
-        text="Welcome to the Nurse Dashboard!"
+        text="Welcome to the Admin Dashboard!"
         delay={150}
         animateBy="words"
         direction="top"
