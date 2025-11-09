@@ -2,8 +2,13 @@
 body {
   background-color: #000000; /* black */
   /* Ensure no default browser margins on the body */
-  margin: 0; 
+  margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 .page-root {
@@ -52,6 +57,7 @@ body {
   padding: 2rem;
   background-color: #000000;
   position: relative;
+  box-sizing: border-box;
 }
 
 .login-section {
