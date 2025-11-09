@@ -1,0 +1,36 @@
+.history-page {
+  background-color: #00000000; /* Black */
+  color: #FFFFFF; /* White */
+  padding: 20px;
+}
+.background-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+}
+
+.history-page h1 {
+  color: #ffffff; /* Dark red */
+  margin-bottom: 20px;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+}
+
+.requests-table th, .requests-table td {
+  border: 1px solid #0f0ff0; /* Blue */
+  padding: 10px;
+  text-align: left;
+}
+
+.requests-table th {
+  background-color: #f00f0f; /* Red */
+}

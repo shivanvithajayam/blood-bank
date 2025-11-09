@@ -17,11 +17,11 @@ export default function HomePage() {
             <Beams
               beamWidth={3}
               beamHeight={30}
-              beamNumber={12}
+              beamNumber={9}
               lightColor="#F00F0F"    // changed from white to red 660001
               speed={2}
-              noiseIntensity={5}
-              scale={0.27}
+              noiseIntensity={8}
+              scale={0.2}
               rotation={30}
             />
 
