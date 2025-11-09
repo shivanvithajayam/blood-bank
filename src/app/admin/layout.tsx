@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import './globals.css'; // Import layout-specific CSS
+import './global.css'; // Import layout-specific CSS
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const handleLogout = () => {

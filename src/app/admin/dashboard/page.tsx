@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
-import './dashboard.css'; // Import dashboard-specific CSS
+import './Dashboard.css'; // Import dashboard-specific CSS
 import BlurText from './BlurText';
 import Beams from '../../beams';
 const Dashboard: React.FC = () => {
