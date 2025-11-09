@@ -98,7 +98,7 @@ html {
   color: white;
   font-size: 24px;
   left: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* Section 3: 50vh - Contact Us */
