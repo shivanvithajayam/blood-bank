@@ -1,26 +1,34 @@
+'use client';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import './globals.css'; // Import layout-specific CSS
 
-interface AdminLayoutProps {
-  children: ReactNode;
-}
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const handleLogout = () => {
+    // Placeholder logout logic (e.g., clear tokens, redirect)
+    alert('Logged out!');
+    window.location.href = '/'; // Redirect to home/login page
+  };
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <div className="admin-container">
-      {/* Side Navigation */}
-      <nav className="side-nav">
-        <h3>Admin Panel</h3>
-        <ul>
-          <li><Link href="/admin/dashboard">Dashboard</Link></li>
-          <li><Link href="/admin/requests">Requests</Link></li>
-          <li><Link href="/admin/notifications">Notifications</Link></li>
-        </ul>
-      </nav>
-      {/* Main Content Area */}
-      <main className="main-content">
-        {children}
-      </main>
-    </div>
+    <html lang="en">
+      <body>
+        <div className="app-container">
+          {/* Persistent Side Navigation */}
+          <nav className="side-nav">
+            <ul>
+              <li><Link href="\admin\dashboard">Dashboard</Link></li>
+              <li><Link href="\admin\request">Blood Requests</Link></li>
+              <li><Link href="\admin\notification">Notifications</Link></li>
+              
+              <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
+            </ul>
+          </nav>
+          {/* Page Content */}
+          <main className="page-content">
+            {children}
+          </main>
+        </div>
+      </body>
+    </html>
   );
 }

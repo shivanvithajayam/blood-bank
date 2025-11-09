@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import './request.css';
 const Request = () => {
 // Sample data for pending requests
 const pendingRequests = [
@@ -8,7 +9,7 @@ const pendingRequests = [
 
   return (
     <Suspense fallback={<div>Loading Requests...</div>}>
-      <div>
+      <div className="request-page">
         <h1>Pending Requests</h1>
         <table className="requests-table">
           <thead>
