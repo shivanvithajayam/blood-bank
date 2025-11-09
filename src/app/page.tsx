@@ -48,22 +48,23 @@ export default function HomePage() {
                 cardDistance={60}
                 verticalDistance={70}
                 delay={5000}
-                pauseOnHover={false}
+                pauseOnHover={true}
                 skewAmount={5}
               >
                 <Card>
                   <h3>About Us</h3>
-                  <p><strong>Bloodline</strong> is a dedicated web platform committed to revolutionizing how blood banks manage their most critical resource. We believe that <em>saving lives</em> starts with <em>smart, reliable management</em>. Our system was developed to replace outdated, manual processes with a streamlined digital solution that ensures every unit of blood is accurately tracked, readily available, and safely delivered when and where it's needed most. We are the digital pipeline for life.</p>
+                  <p><strong>Bloodline</strong> is a dedicated web platform committed to revolutionizing how<br/> blood banks manage their most critical resource. We believe that <em>saving lives</em> starts with <em>smart, reliable management</em>. Our system was developed to replace outdated, manual processes with a streamlined digital solution that ensures<br/> every unit of blood is accurately tracked, readily available, and safely<br/> delivered when and where it's needed most. We are the<br/> digital pipeline for life.</p>
                 </Card>
                 <Card>
                   <h3>Our Services</h3>
-                  <p>Bloodline provides a suite of essential services designed to bring efficiency and integrity to the blood management lifecycle:
+                  <p>Bloodline provides a suite of essential services designed to bring efficiency <br/>and integrity to the blood management lifecycle:
+                  <br/>
                   <strong>Real-Time Inventory Tracking:</strong> 
-                  We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
+                  We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows<br/> bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
                 </Card>
                 <Card>
                   <h3>Our Vission:A Future of zero waste</h3>
-                  <p>Our long-term vision for Bloodline is to create a national or global network where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
+                  <p>Our long-term vision for Bloodline is to create a national or global network<br/> where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
                 </Card>
               </CardSwap>
             </div>
