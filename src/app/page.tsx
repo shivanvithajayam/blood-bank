@@ -5,8 +5,6 @@ import './globals.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
 import CardSwap, { Card } from './CardSwap';
 import Link from 'next/link';
-//import MetallicPaintLogo from './MetallicPaintLogo'; // Assuming you have this component
-//<MetallicPaintLogo /> can be added above RotatingTextWrapper.
 export default function HomePage() {
   return (
       <main className="bg-[#000000] min-h-screen">
@@ -57,13 +55,11 @@ export default function HomePage() {
                 </Card>
                 <Card>
                   <h3>Our Services</h3>
-                  <p>Bloodline provides a suite of essential services designed to bring efficiency and integrity to the blood management lifecycle:
-                  <strong>Real-Time Inventory Tracking:</strong> 
-                  We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
+                  <p>Your content here</p>
                 </Card>
                 <Card>
-                  <h3>Our Vission:A Future of zero waste</h3>
-                  <p>Our long-term vision for Bloodline is to create a national or global network where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
+                  <h3>Stacks Used</h3>
+                  <p>Your content here</p>
                 </Card>
               </CardSwap>
             </div>
