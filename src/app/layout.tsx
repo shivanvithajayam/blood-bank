@@ -4,9 +4,6 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'BloodLine',
   description: 'Blood bank management platform',
-  icons: {
-    icon: '/favicon.png',
-  },
 };
 
 export default function RootLayout({
