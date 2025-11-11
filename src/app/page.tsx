@@ -1,5 +1,8 @@
 'use client';
+<<<<<<< HEAD
+=======
 
+>>>>>>> 92dd23653f2926aaa9c21dcc5cfe43d546be7b75
 import Beams from './beams';
 import './globals.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
