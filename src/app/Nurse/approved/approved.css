@@ -1,38 +1,84 @@
-body {
- background-color: #000000; /* black */
+/* Ensure the app root fills the viewport */
+html, body, #__next {
+  height: 100%;
+  margin: 0;
 }
-.background-div {
-  position: absolute;
+
+/* Preferred: use body pseudo-element for full-screen background (no extra DOM node) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* Choose one gradient: black -> green OR black -> red (uncomment the one you want) */
+  /* Black -> Green */
+  background: linear-gradient(135deg, #000000 0%, #00C853 100%);
+  /* Black -> Red (alternative) */
+  /* background: linear-gradient(135deg, #000000 0%, #c80000 100%); */
+  pointer-events: none;
+  z-index: 0; /* base layer */
+}
+
+/* Page content and sidebar must sit above the background */
+.main-root, .page-root, .approved-page, .sidebar, .content {
+  position: relative;
+  z-index: 1;
+}
+
+/* If your sidebar is fixed, explicitly raise it */
+.sidebar {
+  position: fixed; /* or sticky depending on layout */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  z-index: -1;
+  height: 100vh;
+  z-index: 2;
 }
+
+/* Legacy approach using .background-div (if you prefer a DOM node) */
+/* .background-div {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #000000 0%, #00C853 100%);
+  pointer-events: none;
+  z-index: 0;
+} */
+
+/* Approved page container */
 .approved-page {
-  background-color: #00000000; /* Black */
-  color: #FFFFFF; /* White */
+  background-color: transparent; /* use truly transparent */
+  color: #ffffff;
   padding: 20px;
 }
+
+/* Headings */
 .approved-page h1 {
-  color: #ffffff; /* Dark red */
+  color: #ffffff;
   margin-bottom: 20px;
 }
 
+/* Table styling */
 .requests-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #000000; /* Black */
-  color: #FFFFFF; /* White */
+  background-color: rgba(0,0,0,0.6); /* subtle dark panel so rows stand out */
+  color: #ffffff;
 }
 
 .requests-table th, .requests-table td {
-  border: 1px solid #0f0ff0; /* Blue */
+  border: 1px solid rgba(15,15,240,0.6); /* blue border with alpha */
   padding: 10px;
   text-align: left;
 }
 
+/* Table header with accessible contrast */
 .requests-table th {
-  background-color: #f00f0f; /* Red */
+  background-color: #b71c1c; /* deep red header (good contrast) */
+  color: #ffffff;
+}
+
+/* Optional: alternate row shading */
+.requests-table tbody tr:nth-child(odd) {
+  background-color: rgba(255,255,255,0.02);
+}
+.requests-table tbody tr:nth-child(even) {
+  background-color: rgba(255,255,255,0.01);
 }

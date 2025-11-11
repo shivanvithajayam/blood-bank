@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import './global.css'; // Import layout-specific CSS
+import Image from 'next/image';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const handleLogout = () => {
@@ -15,6 +16,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="app-container">
           {/* Persistent Side Navigation */}
           <nav className="side-nav">
+            <div className="side-nav-logo">
+                          <Image
+                            src="/b-logo.webp"
+                            alt="BloodLine Logo"
+                            width={80}
+                            height={80}
+                            priority
+                          />
+            </div> 
             <ul>
               <li><Link href="\admin\dashboard">Dashboard</Link></li>
               <li><Link href="\admin\request">Blood Requests</Link></li>
