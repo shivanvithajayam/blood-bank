@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import './globals.css'; // Import layout-specific CSS
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -15,6 +16,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="app-container">
           {/* Persistent Side Navigation */}
           <nav className="side-nav">
+            <div className="side-nav-logo">
+              <Image
+                src="/b-logo.webp"
+                alt="BloodLine Logo"
+                width={80}
+                height={80}
+                priority
+              />
+            </div>
             <ul>
               <li><Link href="\Nurse\dashboard">Dashboard</Link></li>
               <li><Link href="\Nurse\request">Request Blood</Link></li>

@@ -5,8 +5,6 @@ import './globals.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
 import CardSwap, { Card } from './CardSwap';
 import Link from 'next/link';
-//import MetallicPaintLogo from './MetallicPaintLogo'; // Assuming you have this component
-//<MetallicPaintLogo /> can be added above RotatingTextWrapper.
 export default function HomePage() {
   return (
       <main className="bg-[#000000] min-h-screen">
