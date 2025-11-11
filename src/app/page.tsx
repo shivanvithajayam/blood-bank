@@ -1,10 +1,13 @@
 'use client';
 
+import LogoComponent from "./LogoComponent";
 import Beams from './beams';
 import './globals.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
 import CardSwap, { Card } from './CardSwap';
 import Link from 'next/link';
+
+
 export default function HomePage() {
   return (
       <main className="main-root">
@@ -24,7 +27,10 @@ export default function HomePage() {
               />
             </div>
             <div className="logo-and-text">
+              <LogoComponent />
+                
               
+
               <RotatingTextWrapper />
             </div>
           </section>

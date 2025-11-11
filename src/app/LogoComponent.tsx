@@ -1,41 +1,15 @@
 'use client';
-import MetallicPaint, { parseLogoImage } from "./MetalicPaint";
-import { useState, useEffect } from 'react';
-
-// replace with your own SVG
-// NOTE: your SVG should have a bit of padding around the shape, to keep it from being cut off
-// it should also have black fill color, to allow the metallic effect to show through the mask
-import logo from './Copilot_20251111_190400.svg';
-
-const LogoComponent = () => {
-  const [imageData, setImageData] = useState<ImageData | null>(null);
-
-  useEffect(() => {
-    async function loadDefaultImage() {
-      try {
-        const response = await fetch(logo);
-        const blob = await response.blob();
-        const file = new File([blob], "default.png", { type: blob.type });
-
-        const parsedData = await parseLogoImage(file);
-        setImageData(parsedData?.imageData ?? null);
-
-      } catch (err) {
-        console.error("Error loading default image:", err);
-      }
-    }
-
-    loadDefaultImage();
-  }, []);
-
-  return (
-    <div style={{ width: '100%', height: '100vh' }}>
-      <MetallicPaint 
-        imageData={imageData ?? new ImageData(1, 1)} 
-        params={{ edge: 2, patternBlur: 0.005, patternScale: 2, refraction: 0.015, speed: 0.3, liquid: 0.07 }} 
-      />
-    </div>
-  );
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
+.b-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(192, 192, 192, 0.5)) brightness(1.1) contrast(1.15);
+}
 export default LogoComponent;
