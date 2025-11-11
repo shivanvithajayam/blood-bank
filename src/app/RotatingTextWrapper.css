@@ -1,0 +1,42 @@
+.rotating-text-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.rotating-text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter UI', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.fixed-text {
+  user-select: none;
+  color: white;
+}
+
+.rotating-text {
+  background-color: #0ff07f5e; /* cyan-green */
+  padding: 0.2rem 0.6rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  color: black;
+  font-weight: 900;
+  user-select: none;
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+  .rotating-text-wrapper {
+    font-size: 1.8rem;
+  }
+  .rotating-text-wrapper-container {
+    gap: 1rem;
+  }
+}
