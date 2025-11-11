@@ -1,8 +1,6 @@
 'use client';
-<<<<<<< HEAD
-=======
 
-import LogoComponent from "./LogoComponent";
+//import LogoComponent from "./LogoComponent";
 import Beams from './beams';
 import './globals.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
@@ -29,7 +27,7 @@ export default function HomePage() {
               />
             </div>
             <div className="logo-and-text">
-              <LogoComponent />
+              
                 
               
 

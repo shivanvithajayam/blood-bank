@@ -1,12 +1,12 @@
 import React from 'react';
 import RotatingText from './RoatingText'; // adjust import path accordingly
-import LogoComponent from './LogoComponent';
+//import LogoComponent from './LogoComponent';
 import './RotatingTextWrapper.css'; // Styles for layout and colors
-
+//<LogoComponent />
 const RotatingTextWrapper: React.FC = () => {
   return (
     <div className="rotating-text-wrapper-container">
-      <LogoComponent />
+      
       <div className="rotating-text-wrapper">
         <span className="fixed-text">BloodLine&nbsp;</span>
         <RotatingText
