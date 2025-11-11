@@ -1,30 +1,21 @@
 @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
-  background: #1b181000;
+  background: #2D2F36;
 }
 ::-webkit-selection {
-  background: #1b181000;
+  background: #2D2F36;
 }
 ::-moz-selection {
-  background: #1b181000;
+  background: #2D2F36;
 }
 body {
-  background: rgba(0, 0, 0, 0);
+  background: #000000; /* Changed to black */
   font-family: 'Inter UI', sans-serif;
   margin: 0;
   padding: 20px;
 }
-.background-div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  z-index: -1; /* Push to the very back */
-}
 .page {
-  background: #00000000;
+  background: #000000; /* Changed to black */
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
@@ -44,18 +35,16 @@ body {
   height: 320px;
   margin: 0 auto;
   width: 640px;
-  z-index: 1;
 }
 @media (max-width: 767px) {
   .container {
     flex-direction: column;
     height: 630px;
     width: 320px;
-    z-index: 1;
   }
 }
 .left {
-  background: white;
+  background: white; /* Kept white for contrast with black login text */
   height: calc(100% - 40px);
   top: 20px;
   position: relative;
@@ -73,6 +62,7 @@ body {
   font-size: 50px;
   font-weight: 900;
   margin: 50px 40px 40px;
+  color: #000000; /* Added black color for login text */
 }
 .eula {
   color: #999;
@@ -108,7 +98,6 @@ path {
 .form {
   margin: 40px;
   position: absolute;
-  z-index: 2; /* Optional: Ensure form is above other elements if needed */
 }
 label {
   color: #c2c2c5;

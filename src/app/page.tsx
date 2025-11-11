@@ -2,7 +2,7 @@
 
 //import LogoComponent from "./LogoComponent";
 import Beams from './beams';
-import './globals.css';
+import './main.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
 import CardSwap, { Card } from './CardSwap';
 import Link from 'next/link';
