@@ -1,5 +1,4 @@
 'use client';
-import Aurora from './Aurora';
 import Beams from './beams';
 import './globals.css';
 import Dock from './dock';

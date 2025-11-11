@@ -88,8 +88,8 @@ const Dashboard: React.FC = () => {
                   dataKey="value"
                   animationDuration={3000}
                 >
-                  <Cell fill="#f00f0f" />
                   <Cell fill="#0ff080" />
+                  <Cell fill="#f00f0f" />
                 </Pie>
               </PieChart>
               <div className="amount-tooltip">{data.available} units</div>
