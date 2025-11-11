@@ -34,26 +34,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <div className="background-div" style={{ width: '100%', height: '600px' }}>
-            <Beams
-              beamWidth={1}
-              beamHeight={20}
-              beamNumber={9}
-              lightColor="#F00F0F"    // changed from white to red 660001
-              speed={2}
-              noiseIntensity={2}
-              scale={0.2}
-              rotation={30}
-            />
-            <Beams
-              beamWidth={1}
-              beamHeight={20}
-              beamNumber={9}
-              lightColor="#F00F0F"    // changed from white to red 660001
-              speed={2}
-              noiseIntensity={2}
-              scale={0.2}
-              rotation={30}
-            />
+        
 
       </div>
       <div className="heading">

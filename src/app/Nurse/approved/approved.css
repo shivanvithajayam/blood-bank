@@ -11,11 +11,11 @@ body::before {
   inset: 0;
   /* Choose one gradient: black -> green OR black -> red (uncomment the one you want) */
   /* Black -> Green */
-  background: linear-gradient(135deg, #000000 0%, #00C853 100%);
+  background: #000000;
   /* Black -> Red (alternative) */
   /* background: linear-gradient(135deg, #000000 0%, #c80000 100%); */
   pointer-events: none;
-  z-index: 0; /* base layer */
+  z-index: -1; /* base layer */
 }
 
 /* Page content and sidebar must sit above the background */
