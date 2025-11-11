@@ -67,7 +67,7 @@ export default function HomePage() {
                   We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows<br/> bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
                 </Card>
                 <Card>
-                  <h3>Our Vission:A Future of zero waste</h3>
+                  <h3>Our Vision:A Future of zero waste</h3>
                   <p>Our long-term vision for Bloodline is to create a national or global network<br/> where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
                 </Card>
               </CardSwap>
@@ -78,7 +78,10 @@ export default function HomePage() {
           <section className="section-3">
             <div className="contact-section">
               <h2>Contact Us</h2>
-              <p>Get in touch with us for more information.</p>
+              <p>Get in touch with us for more information.<br/>
+              Mobile: +91  xxxxxxxxxx<br/>
+              Email: xxxxxxxx@XXX.com<br/>
+              Adress: FWD CSE-LAB-2 </p>
               {/* Add contact form or details here */}
             </div>
           </section>
