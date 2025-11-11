@@ -9,7 +9,7 @@ import Link from 'next/link';
 //<MetallicPaintLogo /> can be added above RotatingTextWrapper.
 export default function HomePage() {
   return (
-      <main className="bg-[#000000] min-h-screen">
+      <main className="main-root">
         <div className="page-root">
           {/* Section 1: 100vh - Logo and Rotating Text with Beams Background */}
           <section className="section-1">
