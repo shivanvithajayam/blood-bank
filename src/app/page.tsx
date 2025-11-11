@@ -1,4 +1,6 @@
 'use client';
+<<<<<<< HEAD
+=======
 
 import LogoComponent from "./LogoComponent";
 import Beams from './beams';

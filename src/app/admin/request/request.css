@@ -1,47 +1,107 @@
 body {
-  background-color: #000000; /* Black */
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000;
+  color: white;
 }
 
 .request-page {
-  background-color: transparent;
-  color: #FFFFFF; /* White */
-  padding: 20px;
+  padding: 24px;
+  max-width: 800px;
+  margin: auto;
 }
 
-.request-page h1 {
-  color: #ffffff;
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: bold;
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  color: white;
 }
 
+/* Table styling with curved corners */
 .requests-table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: #000000; /* Black */
-  color: #FFFFFF; /* White */
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #111;
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .requests-table th,
 .requests-table td {
-  border: 1px solid #0f0ff0; /* Blue */
   padding: 12px 16px;
   text-align: left;
+  border-bottom: 1px solid #333;
 }
 
 .requests-table th {
-  background-color: #f00f0f; /* Red */
-  color: #ffffff;
+  background-color: #b30000;
+  color: white;
+  font-weight: bold;
 }
 
-.requests-table tbody tr:nth-child(even) {
-  background-color: #111111;
+.requests-table td {
+  background-color: #1a1a1a;
 }
 
-.requests-table tbody tr:hover {
-  background-color: #222222;
+.requests-table tr:hover td {
+  background-color: #222;
+}
+
+/* Rounded corners for first and last cells */
+.requests-table th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.requests-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.requests-table tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.requests-table tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Status dropdown styling */
+.status-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
   cursor: pointer;
+  outline: none;
+}
+
+.status-select.pending {
+  background-color: #f0ad4e;
+  color: black;
+}
+
+.status-select.accepted {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.status-select.rejected {
+  background-color: #d9534f;
+  color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .requests-table th,
+  .requests-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }
