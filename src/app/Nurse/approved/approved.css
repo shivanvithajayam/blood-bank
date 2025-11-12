@@ -47,6 +47,7 @@ body::before {
   background-color: transparent; /* use truly transparent */
   color: #ffffff;
   padding: 20px;
+  max-width: calc(100vw - 240px);
 }
 
 /* Headings */
@@ -58,9 +59,12 @@ body::before {
 /* Table styling */
 .requests-table {
   width: 100%;
+  box-sizing: border-box;
   border-collapse: collapse;
   background-color: rgba(0,0,0,0.6); /* subtle dark panel so rows stand out */
   color: #ffffff;
+  max-width: calc(100vw - 240px);
+  overflow-x: auto;
 }
 
 .requests-table th, .requests-table td {
@@ -81,4 +85,30 @@ body::before {
 }
 .requests-table tbody tr:nth-child(even) {
   background-color: rgba(255,255,255,0.01);
+}
+
+/* fallback variable for sidebar total width (adjust if your sidebar uses different total) */
+:root {
+  --nurse-sidebar-total: 240px; /* sidebar width (200px) + left/right padding (20px each) = 240px */
+}
+
+/* fixed background element (sibling) */
+.background-div {
+  position: fixed;
+  inset: 0;
+  background:#000000 ;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Approved page content must be to the right of the fixed sidebar */
+.approved-page {
+  margin-left: var(--nurse-sidebar-total, 240px); /* push content right of sidebar */
+  padding: 20px;
+  background-color: transparent;
+  color: #ffffff;
+  position: relative;
+  z-index: 1; /* above the .background-div */
+  box-sizing: border-box;
+  max-width: calc(100% - var(--nurse-sidebar-total, 240px));
 }
