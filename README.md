@@ -79,9 +79,26 @@ bash
 # Clone repository
 git clone https://github.com/Jahnavi-verma/blood-bank.git
 cd blood-bank
+#dependencies used
+next (15.5.5)
+react (19.1.0)
+react-dom (19.1.0)
+gsap (^3.13.0)
+motion (^12.23.24)
+animejs (^4.2.2)
+@react-three/fiber (^9.4.0)
+@react-three/drei (^10.7.6)
+three (^0.180.0)
+ogl (^1.0.11)
+recharts (^3.3.0)
+@react-icons/all-files (^4.1.0)
+@types/animejs (^3.1.13)
 
 # Install dependencies
 npm install
+npm install gsap
+npm install motion
+npx shadcn@latest add @react-bits/Beams-TS-CSS
 
 # Build project
 npm run build
