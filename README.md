@@ -149,67 +149,67 @@ json
 
 
 ## 📁 Project Structure(Till Now)
-BLOOD_BANK/
-├── 📁src/
-│   ├── 📁app/
-│   │   ├──📁 admin/                      # Administrator Interface Route
-│   │   │   ├──📁 dashboard/              # Admin Dashboard Sub-route
-│   │   │   │   ├── BlurText.tsx
-│   │   │   │   ├── Dashboard.css
-│   │   │   │   └── page.tsx
-│   │   │   ├── 📁notification/           # Admin Notifications Sub-route
-│   │   │   │   ├── notifications.css
-│   │   │   │   └── page.tsx
-│   │   │   ├── 📁request/                # Admin Request Management Sub-route
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── request.css 
-│   │   │   ├── global.css              
-│   │   │   ├── layout.tsx              # Layout for the Admin module the Side-Nav-Pannel
-|   |   ├── 📁 Components/              # Admin and Nurse Component/View
-|   |   |   ├──ApprovedRequests.tsx
-|   |   |   ├──RequestHistory.tsx
-│   │   ├── 📁login/                      # User Authentication Route
-│   │   │   ├── login.css
-│   │   │   └── page.tsx
-│   │   ├── 📁Nurse/                      # Nursing Staff Interface Route
-│   │   │   ├── 📁approved/               # Nurse Approved Requests Sub-route
-│   │   │   │   ├── approved.css
-│   │   │   │   └── page.tsx              
-│   │   │   ├── 📁dashboard/              # Nurse Dashboard Sub-route
-│   │   │   │   ├── BlurText.tsx
-│   │   │   │   ├── dashboard.css
-│   │   │   │   └── page.tsx
-│   │   │   ├── 📁history/                # Nurse History Sub-route
-│   │   │   │   ├── history.css
-│   │   │   │   └── page.tsx
-│   │   │   ├── 📁request/                # Nurse Request Sub-route
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── request.css
-│   │   │   ├── globals.css             
-│   │   │   └── layout.tsx              # Layout for the Nurse module the Side-Nav-Pannel
-│   │   ├── Beams.css                   # Root-level component files shared
-│   │   ├── beams.tsx
-│   │   ├── CardSwap.css
-│   │   ├── CardSwap.tsx
-│   │   ├── favicon.ico
-│   │   ├── layout.tsx                  # Root application layout
-│   │   ├── LogoComponent.css
-│   │   ├── LogoComponent.tsx
-│   │   ├── main.css
-│   │   ├── page.tsx                    # Root application page content
-│   │   ├── RoatingText.css
-│   │   ├── RoatingText.tsx
-│   │   ├── RotatingTextWrapper.css
-│   │   └── RotatingTextWrapper.tsx
-├── .gitignore                          # Git configuration
-├── next-env.d.ts                       # TypeScript environment definition
-├── next.config.ts                      # Next.js configuration
-├── package-lock.json                   # Dependency lock file
-├── package.json                        # Project dependencies
-├── postcss.config.mjs                  # PostCSS configuration
-├── README.md                           # Project documentation
-├── tailwind.config.js                  # Tailwind CSS configuration
-└── tsconfig.json                       # TypeScript configuration
+BLOOD_BANK/  
+├── 📁src/  
+│   ├── 📁app/  
+│   │   ├──📁 admin/                      # Administrator Interface Route.  
+│   │   │   ├──📁 dashboard/              # Admin Dashboard Sub-route  
+│   │   │   │   ├── BlurText.tsx  
+│   │   │   │   ├── Dashboard.css  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── 📁notification/           # Admin Notifications Sub-route  
+│   │   │   │   ├── notifications.css  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── 📁request/                # Admin Request Management Sub-route  
+│   │   │   │   ├── page.tsx  
+│   │   │   │   └── request.css  
+│   │   │   ├── global.css                
+│   │   │   ├── layout.tsx              # Layout for the Admin module the Side-Nav-Pannel  
+|   |   ├── 📁 Components/              # Admin and Nurse Component/View  
+|   |   |   ├──ApprovedRequests.tsx  
+|   |   |   ├──RequestHistory.tsx  
+│   │   ├── 📁login/                      # User Authentication Route  
+│   │   │   ├── login.css  
+│   │   │   └── page.tsx  
+│   │   ├── 📁Nurse/                      # Nursing Staff Interface Route  
+│   │   │   ├── 📁approved/               # Nurse Approved Requests Sub-route  
+│   │   │   │   ├── approved.css  
+│   │   │   │   └── page.tsx         
+│   │   │   ├── 📁dashboard/              # Nurse Dashboard Sub-route  
+│   │   │   │   ├── BlurText.tsx  
+│   │   │   │   ├── dashboard.css  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── 📁history/                # Nurse History Sub-route  
+│   │   │   │   ├── history.css  
+│   │   │   │   └── page.tsx  
+│   │   │   ├── 📁request/                # Nurse Request Sub-route  
+│   │   │   │   ├── page.tsx  
+│   │   │   │   └── request.css  
+│   │   │   ├── globals.css              
+│   │   │   └── layout.tsx              # Layout for the Nurse module the Side-Nav-Pannel  
+│   │   ├── Beams.css                   # Root-level component files shared  
+│   │   ├── beams.tsx  
+│   │   ├── CardSwap.css  
+│   │   ├── CardSwap.tsx  
+│   │   ├── favicon.ico  
+│   │   ├── layout.tsx                  # Root application layout  
+│   │   ├── LogoComponent.css  
+│   │   ├── LogoComponent.tsx  
+│   │   ├── main.css  
+│   │   ├── page.tsx                    # Root application page content  
+│   │   ├── RoatingText.css  
+│   │   ├── RoatingText.tsx  
+│   │   ├── RotatingTextWrapper.css  
+│   │   └── RotatingTextWrapper.tsx  
+├── .gitignore                          # Git configuration  
+├── next-env.d.ts                       # TypeScript environment definition  
+├── next.config.ts                      # Next.js configuration  
+├── package-lock.json                   # Dependency lock file  
+├── package.json                        # Project dependencies  
+├── postcss.config.mjs                  # PostCSS configuration  
+├── README.md                           # Project documentation  
+├── tailwind.config.js                  # Tailwind CSS configuration  
+└── tsconfig.json                       # TypeScript configuration  
 
 
 
