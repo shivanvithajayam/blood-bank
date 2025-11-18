@@ -16,7 +16,6 @@ BloodLine is a comprehensive platform designed to streamline blood bank operatio
 
 - [About](#about)
 - [Features](#features)
-- [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -25,9 +24,7 @@ BloodLine is a comprehensive platform designed to streamline blood bank operatio
 - [Contributing](#contributing)
 - [Testing](#testing)
 - [Deployment](#deployment)
-- [FAQ](#faq)
-- [License](#license)
-- [Support](#support)
+- [Support](#support)(NA)
 - [Acknowledgments](#acknowledgments)
 
 ## About
@@ -49,7 +46,7 @@ The unique selling point of BloodLine is its integrated approach, inventory trac
 
 
 
-### Screenshots
+### Screenshots (NA)
 ![Dashboard](screenshots/dashboard.png)
 *BloodLine dashboard showing key metrics and quick actions*
 
@@ -235,7 +232,9 @@ git clone https://github.com/yourusername/blood-bank.git
 
 # Install dependencies
 npm install
-
+npm install gsap
+npm install motion
+npx shadcn@latest add @react-bits/Beams-TS-CSS
 # Create a new branch
 git checkout -b feature/your-feature-name
 
