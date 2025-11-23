@@ -37,6 +37,7 @@ export default function HomePage() {
 
           {/* Section 2: 100vh - Login Text/Button beside CardSwap */}
           <section className="section-2">
+            {/*
             <div className="login-section">
               <p className="overlay-text">Welcome to the BloodLine.<br/>Please log in to continue.</p>
               <div className="button-row">
@@ -45,6 +46,8 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
+            */}
+            
             <div className="stacks-section">
               <CardSwap
                 width={500}
@@ -74,15 +77,21 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Section 3: 50vh - Contact Us */}
           <section className="section-3">
-            <div className="contact-section">
-              <h2>Contact Us</h2>
-              <p>Get in touch with us for more information.<br/>
-              Mobile: +91  xxxxxxxxxx<br/>
-              Email: xxxxxxxx@XXX.com<br/>
-              Adress: FWD CSE-LAB-2 </p>
-              {/* Add contact form or details here */}
+            <h2 className="contact-heading">Contact Us</h2>
+            <div className="contact-row">
+              <div className="contact-box">
+                <h3>📍 Address</h3>
+                <p>BMS HOSPITALS, Basavanagudi, Bangalore, Karnataka, India</p>
+              </div>
+              <div className="contact-box">
+                <h3>📞 Phone</h3>
+                <p>+91 XXXXXXXX</p>
+              </div>
+              <div className="contact-box">
+                <h3>📧 Email</h3>
+                  <p>xxxxxxx@XXX.com</p>
+              </div>
             </div>
           </section>
         </div>
