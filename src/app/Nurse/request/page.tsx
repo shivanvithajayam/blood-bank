@@ -99,6 +99,7 @@ const RequestPage: React.FC = () => {
             Surgery
           </label>
         </div>
+        <div className="admin-form-group">
         <label>
           Blood Type:
           <select value={bloodType} onChange={(e) => setBloodType(e.target.value)} required>
@@ -108,6 +109,8 @@ const RequestPage: React.FC = () => {
             ))}
           </select>
         </label>
+        </div>
+        <div className="admin-form-group">
         <label>
           Amount:
           <input
@@ -117,6 +120,8 @@ const RequestPage: React.FC = () => {
             required
           />
         </label>
+        </div>
+        <div className="admin-form-group">
         <label>
           Nurse ID:
           <input
@@ -126,6 +131,7 @@ const RequestPage: React.FC = () => {
             required
           />
         </label>
+        </div>
         <button type="submit">Submit Request</button>
       </form>
     </div>
