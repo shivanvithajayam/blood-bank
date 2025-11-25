@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
-import "../../admin-nurse.css";
+import "../newnurseadmin.css";
 
 // Change this if your backend URL is different
 const API_URL = "http://localhost:4000/api/nurses";
@@ -103,7 +103,7 @@ const AdminAddNursePage: React.FC = () => {
             value={location}
             onChange={e => setLocation(e.target.value)}
             type="text"
-            placeholder="e.g. N1234"
+            placeholder="e.g. BMS-EMR-001"
           />
         </div>
 

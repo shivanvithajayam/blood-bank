@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import "../../admin-nurse.css";
+import "../newnurseadmin.css";
 
 // LEAFLET
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
@@ -18,6 +18,7 @@ const markerIcon = L.icon({
 interface BloodBank {
   id: number;
   name: string;
+  area: string;
   city: string;
   state: string;
   fullAddress: string;
@@ -25,51 +26,57 @@ interface BloodBank {
   lng: number;
 }
 
+// Bengaluru-only blood banks
 const BLOOD_BANKS: BloodBank[] = [
   {
     id: 1,
-    name: "AIIMS Blood Bank",
-    city: "New Delhi",
-    state: "Delhi",
-    fullAddress: "AIIMS Blood Bank, New Delhi",
-    lat: 28.5672,
-    lng: 77.2100
-  },
-  {
-    id: 2,
-    name: "Apollo Hospital Blood Bank",
-    city: "Chennai",
-    state: "Tamil Nadu",
-    fullAddress: "Apollo Hospitals Blood Bank, Chennai",
-    lat: 13.0644,
-    lng: 80.2435
-  },
-  {
-    id: 3,
     name: "Fortis Hospital Blood Bank",
+    area: "Bannerghatta Road",
     city: "Bengaluru",
     state: "Karnataka",
-    fullAddress: "Fortis Hospital Blood Bank, Bengaluru",
+    fullAddress: "Fortis Hospital, Bannerghatta Road, Bengaluru",
     lat: 12.9091,
     lng: 77.5950
   },
   {
+    id: 2,
+    name: "Manipal Hospital Blood Bank",
+    area: "Old Airport Road",
+    city: "Bengaluru",
+    state: "Karnataka",
+    fullAddress: "Manipal Hospital, Old Airport Road, Bengaluru",
+    lat: 12.9550,
+    lng: 77.6487
+  },
+  {
+    id: 3,
+    name: "NIMHANS Blood Bank",
+    area: "Wilson Garden",
+    city: "Bengaluru",
+    state: "Karnataka",
+    fullAddress: "NIMHANS Campus, Wilson Garden, Bengaluru",
+    lat: 12.9431,
+    lng: 77.5963
+  },
+  {
     id: 4,
-    name: "Tata Memorial Hospital Blood Bank",
-    city: "Mumbai",
-    state: "Maharashtra",
-    fullAddress: "Tata Memorial Hospital Blood Bank, Mumbai",
-    lat: 18.9986,
-    lng: 72.8432
+    name: "Bowring & Lady Curzon Hospital Blood Bank",
+    area: "Shivaji Nagar",
+    city: "Bengaluru",
+    state: "Karnataka",
+    fullAddress: "Bowring Hospital, Shivaji Nagar, Bengaluru",
+    lat: 12.9835,
+    lng: 77.6050
   },
   {
     id: 5,
-    name: "NIMS Hospital Blood Bank",
-    city: "Hyderabad",
-    state: "Telangana",
-    fullAddress: "NIMS Blood Bank, Hyderabad",
-    lat: 17.4220,
-    lng: 78.4480
+    name: "Ramaiah Hospital Blood Bank",
+    area: "MSR Nagar / New BEL Road",
+    city: "Bengaluru",
+    state: "Karnataka",
+    fullAddress: "MS Ramaiah Hospital, MSR Nagar, Bengaluru",
+    lat: 13.0307,
+    lng: 77.5667
   }
 ];
 
@@ -85,7 +92,7 @@ const AdminBloodBankLocationsPage: React.FC = () => {
 
   return (
     <div className="admin-page">
-      <h2>Hospital Blood Banks – Map Locations</h2>
+      <h2>Hospital Blood Banks – Bengaluru Map Locations</h2>
 
       <p className="admin-msg admin-info">
         Click any blood bank to highlight its exact location on the map.
@@ -97,6 +104,7 @@ const AdminBloodBankLocationsPage: React.FC = () => {
           <thead>
             <tr>
               <th>Blood Bank Name</th>
+              <th>Area</th>
               <th>City</th>
               <th>State</th>
             </tr>
@@ -109,6 +117,7 @@ const AdminBloodBankLocationsPage: React.FC = () => {
                 onClick={() => setSelected(bank)}
               >
                 <td>{bank.name}</td>
+                <td>{bank.area}</td>
                 <td>{bank.city}</td>
                 <td>{bank.state}</td>
               </tr>
@@ -120,13 +129,11 @@ const AdminBloodBankLocationsPage: React.FC = () => {
       {/* LEAFLET MAP */}
       <div className="admin-map-container">
         <MapContainer
-          center={[20.5937, 78.9629]} // India center
-          zoom={5}
+          center={[12.9716, 77.5946]} // Center on Bengaluru
+          zoom={11}
           style={{ height: "500px", width: "100%", borderRadius: "8px" }}
         >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
           {/* Markers for all blood banks */}
           {BLOOD_BANKS.map((bank) => (
@@ -139,14 +146,14 @@ const AdminBloodBankLocationsPage: React.FC = () => {
                 <strong>{bank.name}</strong>
                 <br />
                 {bank.fullAddress}
+                <br />
+                Area: {bank.area}
               </Popup>
             </Marker>
           ))}
 
           {/* Move map to selected blood bank */}
-          {selected && (
-            <MoveMap lat={selected.lat} lng={selected.lng} />
-          )}
+          {selected && <MoveMap lat={selected.lat} lng={selected.lng} />}
         </MapContainer>
       </div>
     </div>

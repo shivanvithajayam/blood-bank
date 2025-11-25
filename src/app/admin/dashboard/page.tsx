@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 import './Dashboard.css'; // Import dashboard-specific CSS
+// Ensure type declarations for CSS modules are available
 import BlurText from './BlurText';
 import Beams from '../../beams';
 const Dashboard: React.FC = () => {
@@ -34,11 +35,12 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <div className="background-div" style={{ width: '100%', height: '600px' }}>
-            
+        
+
       </div>
       <div className="heading">
       <BlurText
-        text="Welcome to the Admin Dashboard!"
+        text="   Welcome to the Nurse Dashboard!"
         delay={150}
         animateBy="words"
         direction="top"
