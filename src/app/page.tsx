@@ -4,10 +4,9 @@
 import Beams from './beams';
 import './main.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
-import Link from 'next/link';
 import CardNav from './CardNav';
 import CircularGallery from './CircularGallery';
-
+import HexagonMenu from './hex';
 export default function HomePage() {
   const items = [
     {
@@ -51,7 +50,7 @@ export default function HomePage() {
         />
 
         {/* Section 1 */}
-        <section className="section-1">
+        <section className="section-1a">
           <div className="background-div">
             <Beams
               beamWidth={3}
@@ -68,235 +67,25 @@ export default function HomePage() {
             <RotatingTextWrapper />
             
             {/* Added: Only the hexagon menu below RotatingTextWrapper */}
-            <div className="hexagon-menu clear">
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-universal-access"></i>
-                    </span>
-                    <span className="title">Welcome</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-bullseye"></i>
-                    </span>
-                    <span className="title">About</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-braille"></i>
-                    </span>
-                    <span className="title">Services</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-id-badge"></i>
-                    </span>
-                    <span className="title">Resume</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-life-ring"></i>
-                    </span>
-                    <span className="title">Works</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-clipboard"></i>
-                    </span>
-                    <span className="title">Testimonials</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
-              <div className="hexagon-item">
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <div className="hex-item">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-                <a className="hex-content">
-                  <span className="hex-content-inner">
-                    <span className="icon">
-                      <i className="fa fa-map-signs"></i>
-                    </span>
-                    <span className="title">Contact</span>
-                  </span>
-                  <svg
-                    viewBox="0 0 173.20508075688772 200"
-                    height="200"
-                    width="174"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
-                      fill="#1e2530"
-                    />
-                  </svg>
-                </a>
-              </div>
             </div>
-          </div>
+            
         </section>
+        <div className="background-div">
+            <Beams
+              beamWidth={3}
+              beamHeight={30}
+              beamNumber={9}
+              lightColor="#F00F0F"
+              speed={2}
+              noiseIntensity={8}
+              scale={0.2}
+              rotation={30}
+            />
+          </div>
+        <section id="1b"className="hexagon-menu">
 
+          <HexagonMenu />
+        </section>
         {/* Section 2 */}
         <section id="about_us" className="section-2">
           <div className="rotate">
