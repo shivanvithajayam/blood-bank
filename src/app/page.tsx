@@ -1,91 +1,330 @@
+// app/page.tsx
 'use client';
 
-//import LogoComponent from "./LogoComponent";
 import Beams from './beams';
 import './main.css';
 import RotatingTextWrapper from './RotatingTextWrapper';
-import CardSwap, { Card } from './CardSwap';
 import Link from 'next/link';
-
+import CardNav from './CardNav';
+import CircularGallery from './CircularGallery';
 
 export default function HomePage() {
+  const items = [
+    {
+      label: "About",
+      bgColor: "#0D0716",
+      textColor: "#fff",
+      links: [
+        { label: "BloodLine", ariaLabel: "About Us", href: "#about_us" },
+      ],
+    },
+    {
+      label: "Projects",
+      bgColor: "#170D27",
+      textColor: "#fff",
+      links: [
+        { label: "Login", ariaLabel: "Featured Projects", href: "/login" },
+      ],
+    },
+    {
+      label: "Contact",
+      bgColor: "#271E37",
+      textColor: "#fff",
+      links: [
+        { label: "Contact", ariaLabel: "Contact us", href: "#contacts" }, // match section id
+      ],
+    },
+  ];
+
   return (
-      <main className="main-root">
-        <div className="page-root">
-          {/* Section 1: 100vh - Logo and Rotating Text with Beams Background */}
-          <section className="section-1">
-            <div className="background-div">
-              <Beams
-                beamWidth={3}
-                beamHeight={30}
-                beamNumber={9}
-                lightColor="#F00F0F"
-                speed={2}
-                noiseIntensity={8}
-                scale={0.2}
-                rotation={30}
-              />
-            </div>
-            <div className="logo-and-text">
-              
-                
-              
+    <main className="main-root">
+      <div className="page-root">
+        <CardNav
+          logo="/b-logo.webp"   // ✅ simplified path
+          logoAlt="Company Logo"
+          items={items}
+          baseColor="#fff"
+          menuColor="#000"
+          buttonBgColor="#111"
+          buttonTextColor="#fff"
+          ease="power3.out"
+        />
 
-              <RotatingTextWrapper />
-            </div>
-          </section>
-
-          {/* Section 2: 100vh - Login Text/Button beside CardSwap */}
-          <section className="section-2">
-            <div className="login-section">
-              <p className="overlay-text">Welcome to the BloodLine.<br/>Please log in to continue.</p>
-              <div className="button-row">
-                <Link href="/login">
-                  <button className="your-button-class">Login</button>
-                </Link>
+        {/* Section 1 */}
+        <section className="section-1">
+          <div className="background-div">
+            <Beams
+              beamWidth={3}
+              beamHeight={30}
+              beamNumber={9}
+              lightColor="#F00F0F"
+              speed={2}
+              noiseIntensity={8}
+              scale={0.2}
+              rotation={30}
+            />
+          </div>
+          <div className="logo-and-text">
+            <RotatingTextWrapper />
+            
+            {/* Added: Only the hexagon menu below RotatingTextWrapper */}
+            <div className="hexagon-menu clear">
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-universal-access"></i>
+                    </span>
+                    <span className="title">Welcome</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-bullseye"></i>
+                    </span>
+                    <span className="title">About</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-braille"></i>
+                    </span>
+                    <span className="title">Services</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-id-badge"></i>
+                    </span>
+                    <span className="title">Resume</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-life-ring"></i>
+                    </span>
+                    <span className="title">Works</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-clipboard"></i>
+                    </span>
+                    <span className="title">Testimonials</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div className="hexagon-item">
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div className="hex-item">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a className="hex-content">
+                  <span className="hex-content-inner">
+                    <span className="icon">
+                      <i className="fa fa-map-signs"></i>
+                    </span>
+                    <span className="title">Contact</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 173.20508075688772 200"
+                    height="200"
+                    width="174"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z"
+                      fill="#1e2530"
+                    />
+                  </svg>
+                </a>
               </div>
             </div>
-            <div className="stacks-section">
-              <CardSwap
-                width={500}
-                height={300}
-                cardDistance={60}
-                verticalDistance={70}
-                delay={5000}
-                pauseOnHover={true}
-                skewAmount={5}
-              >
-                <Card>
-                  <h3>About Us</h3>
-                  <p><strong>Bloodline</strong> is a dedicated web platform committed to revolutionizing how<br/> blood banks manage their most critical resource. We believe that <em>saving lives</em> starts with <em>smart, reliable management</em>. Our system was developed to replace outdated, manual processes with a streamlined digital solution that ensures<br/> every unit of blood is accurately tracked, readily available, and safely<br/> delivered when and where it's needed most. We are the<br/> digital pipeline for life.</p>
-                </Card>
-                <Card>
-                  <h3>Our Services</h3>
-                  <p>Bloodline provides a suite of essential services designed to bring efficiency <br/>and integrity to the blood management lifecycle:
-                  <br/>
-                  <strong>Real-Time Inventory Tracking:</strong> 
-                  We offer immediate, accurate visibility into blood stock levels, including blood type and expiration dates. This allows<br/> bank staff to make <em>data-driven decisions</em> and prevent critical shortages.</p>
-                </Card>
-                <Card>
-                  <h3>Our Vision:A Future of zero waste</h3>
-                  <p>Our long-term vision for Bloodline is to create a national or global network<br/> where <em>no life is lost due to blood scarcity or supply chain failure</em>.</p>
-                </Card>
-              </CardSwap>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Section 3: 50vh - Contact Us */}
-          <section className="section-3">
-            <div className="contact-section">
-              <h2>Contact Us</h2>
-              <p>Get in touch with us for more information.<br/>
-              Mobile: +91  xxxxxxxxxx<br/>
-              Email: xxxxxxxx@XXX.com<br/>
-              Adress: FWD CSE-LAB-2 </p>
-              {/* Add contact form or details here */}
+        {/* Section 2 */}
+        <section id="about_us" className="section-2">
+          <div className="rotate">
+            <div style={{ height: '100vh', position: 'relative' }}>
+              <CircularGallery bend={0} textColor="#ffffff" borderRadius={0.05} scrollEase={0.02} />
             </div>
-          </section>
-        </div>
-      </main>
+          </div>
+        </section>
+
+        {/* Section 3 */}
+        <section id="contacts" className="section-3">
+          <h2 className="contact-heading">Contact Us</h2>
+          <div className="contact-row">
+            <div className="contact-box">
+              <h3>📍 Address</h3>
+              <p>BMS HOSPITALS, Basavanagudi, Bangalore, Karnataka, India</p>
+            </div>
+            <div className="contact-box">
+              <h3>📞 Phone</h3>
+              <p>+91 XXXXXXXX</p>
+            </div>
+            <div className="contact-box">
+              <h3>📧 Email</h3>
+              <p>xxxxxxx@XXX.com</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }

@@ -1,3 +1,4 @@
+
 import dynamic from 'next/dynamic';
 import "./history.css";
 import Beams from '../../beams';
