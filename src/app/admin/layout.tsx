@@ -29,6 +29,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <li><Link href="\admin\dashboard">Dashboard</Link></li>
               <li><Link href="\admin\request">Blood Requests</Link></li>
               <li><Link href="\admin\notification">Notifications</Link></li>
+              <li><Link href="\admin\newnurse\newnurse">New Nurse</Link></li>
+              <li><Link href="\admin\newnurse\nurselocation">Blood Bank Locations</Link></li>
               
               <li><button onClick={handleLogout} className="logout-btn">Logout</button></li>
             </ul>
