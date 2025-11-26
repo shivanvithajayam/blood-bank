@@ -499,7 +499,7 @@ class App {
         text: ''
       },
       {
-        image: `/Post a Classified Ad in India.jpeg`,
+        image: `/IMG-20251126-WA0000.jpg`,
         text: ''
       },
     ];

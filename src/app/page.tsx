@@ -18,11 +18,11 @@ export default function HomePage() {
       ],
     },
     {
-      label: "Projects",
+      label: "Login",
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Login", ariaLabel: "Featured Projects", href: "/login" },
+        { label: "Login", ariaLabel: "Login", href: "/login" },
       ],
     },
     {
