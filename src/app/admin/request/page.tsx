@@ -5,15 +5,24 @@ import './request.css';
 
 type RequestType = {
   id: number;
-  hospital: string;
+  Date: string;
   bloodType: string;
   quantity: number;
   status: 'Pending' | 'Accepted' | 'Rejected';
 };
 
 const initialRequests: RequestType[] = [
-  { id: 1, hospital: 'City Hospital', bloodType: 'B-', quantity: 5, status: 'Pending' },
-  { id: 2, hospital: 'General Clinic', bloodType: 'AB+', quantity: 2, status: 'Pending' },
+  { id: 1, Date: '31-01-2025', bloodType: 'B-', quantity: 5, status: 'Pending' },
+  { id: 2, Date: '24 -05-2025', bloodType: 'AB+', quantity: 2, status: 'Pending' },
+  { id: 3, Date: '12-03-2025', bloodType: 'O+', quantity: 3, status: 'Accepted' },
+  { id: 4, Date: '15-04-2025', bloodType: 'A-', quantity: 4, status: 'Rejected' },
+  { id: 5, Date: '20-06-2025', bloodType: 'B+', quantity: 1, status: 'Pending' },
+  { id: 6, Date: '05-07-2025', bloodType: 'O-', quantity: 6, status: 'Accepted' },
+  { id: 7, Date: '18-08-2025', bloodType: 'AB-', quantity: 2, status: 'Rejected' },
+  { id: 8, Date: '22-09-2025', bloodType: 'A+', quantity: 3, status: 'Pending' },
+  { id: 9, Date: '30-10-2025', bloodType: 'B-', quantity: 4, status: 'Accepted' },
+  { id: 10, Date: '11-11-2025', bloodType: 'O+', quantity: 5, status: 'Rejected' },
+  { id: 11, Date: '25-12-2025', bloodType: 'A-', quantity: 1, status: 'Pending' },
 ];
 
 const Request = () => {
@@ -43,7 +52,7 @@ const Request = () => {
           {requests.map((req) => (
             <tr key={req.id}>
               <td>{req.id}</td>
-              <td>{req.hospital}</td>
+              <td>{req.Date}</td>
               <td>{req.bloodType}</td>
               <td>{req.quantity}</td>
               <td>
