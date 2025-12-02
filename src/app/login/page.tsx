@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion'; // Import Framer Motion
 import './login.css'; // Import the CSS file
-import Beams from './Beams'; // Adjust the path as necessary
+
 const LoginForm: React.FC = () => {
   const pathControls = useAnimation();
   const pathRef = useRef<SVGPathElement>(null);
