@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../newnurseadmin.css";
 
 // LEAFLET
@@ -11,8 +11,16 @@ import L from "leaflet";
 // Fix default marker icons in Next.js
 const markerIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-shadow.png"
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon-2x.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
 });
+
+// Apply the icon as the default to avoid missing icon issues in some bundlers/Next.js
+;(L as any).Marker.prototype.options.icon = markerIcon;
 
 // Blood bank entry
 interface BloodBank {
@@ -83,7 +91,11 @@ const BLOOD_BANKS: BloodBank[] = [
 // Component to move map to selected location
 const MoveMap: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
   const map = useMap();
-  map.setView([lat, lng], 13);
+  useEffect(() => {
+    if (map) {
+      map.setView([lat, lng], 13);
+    }
+  }, [lat, lng, map]);
   return null;
 };
 

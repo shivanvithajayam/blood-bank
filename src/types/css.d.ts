@@ -11,3 +11,5 @@ declare module '*.module.scss' {
 // Allow side-effect imports (global CSS)
 declare module '*.css';
 declare module '*.scss';
+
+declare module 'leaflet';
