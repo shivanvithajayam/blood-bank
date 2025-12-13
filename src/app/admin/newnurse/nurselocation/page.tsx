@@ -1,26 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, Suspense } from "react";
+import dynamic from "next/dynamic";
 import "../newnurseadmin.css";
 
-// LEAFLET
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-// Fix default marker icons in Next.js
-const markerIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.8.0/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
+// Dynamically import map component with ssr disabled to prevent server-side evaluation of Leaflet
+const MapComponent = dynamic(() => import("./MapComponent"), {
+  ssr: false,
+  loading: () => <div>Loading map...</div>
 });
-
-// Apply the icon as the default to avoid missing icon issues in some bundlers/Next.js
-;(L as any).Marker.prototype.options.icon = markerIcon;
 
 // Blood bank entry
 interface BloodBank {
@@ -88,17 +76,6 @@ const BLOOD_BANKS: BloodBank[] = [
   }
 ];
 
-// Component to move map to selected location
-const MoveMap: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (map) {
-      map.setView([lat, lng], 13);
-    }
-  }, [lat, lng, map]);
-  return null;
-};
-
 const AdminBloodBankLocationsPage: React.FC = () => {
   const [selected, setSelected] = useState<BloodBank | null>(null);
 
@@ -140,33 +117,7 @@ const AdminBloodBankLocationsPage: React.FC = () => {
 
       {/* LEAFLET MAP */}
       <div className="admin-map-container">
-        <MapContainer
-          center={[12.9716, 77.5946]} // Center on Bengaluru
-          zoom={11}
-          style={{ height: "500px", width: "100%", borderRadius: "8px" }}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-          {/* Markers for all blood banks */}
-          {BLOOD_BANKS.map((bank) => (
-            <Marker
-              key={bank.id}
-              position={[bank.lat, bank.lng]}
-              icon={markerIcon}
-            >
-              <Popup>
-                <strong>{bank.name}</strong>
-                <br />
-                {bank.fullAddress}
-                <br />
-                Area: {bank.area}
-              </Popup>
-            </Marker>
-          ))}
-
-          {/* Move map to selected blood bank */}
-          {selected && <MoveMap lat={selected.lat} lng={selected.lng} />}
-        </MapContainer>
+        <MapComponent selected={selected} />
       </div>
     </div>
   );
