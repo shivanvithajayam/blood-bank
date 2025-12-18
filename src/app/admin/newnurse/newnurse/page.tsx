@@ -11,14 +11,16 @@ interface Nurse {
   name: string;
   department: string;
   location: string;
-  contact: string;
+  contact: string; // reused as password
 }
 
 const AdminAddNursePage: React.FC = () => {
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
-  const [location, setLocation] = useState(""); // now nurse ID field
-  const [contact, setContact] = useState("");
+  const [location, setLocation] = useState(""); // nurse ID
+  const [contact, setContact] = useState(""); // PASSWORD stored here
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -36,8 +38,8 @@ const AdminAddNursePage: React.FC = () => {
     const body = {
       name: name.trim(),
       department: department.trim(),
-      location: location.trim(), // nurse ID is still sent as 'location'
-      contact: contact.trim(),
+      location: location.trim(),
+      contact: contact.trim(), // sent as password
     };
 
     try {
@@ -107,21 +109,36 @@ const AdminAddNursePage: React.FC = () => {
           />
         </div>
 
+        {/* PASSWORD FIELD */}
         <div className="admin-form-group">
-          <label htmlFor="contact">Contact Number *</label>
-          <input
-            id="contact"
-            value={contact}
-            onChange={e => setContact(e.target.value)}
-            type="tel"
-          />
+          <label htmlFor="password">Password *</label>
+
+          <div className="password-wrapper">
+            <input
+              id="password"
+              value={contact}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setContact(e.target.value)
+              }
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+            />
+
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
         </div>
 
         <button
           className="admin-btn-primary"
           type="submit"
           disabled={loading}
-          style={{ background: "#1a7f37" }} // GREEN BUTTON
+          style={{ background: "#1a7f37" }}
         >
           {loading ? "Saving..." : "Save Nurse"}
         </button>
