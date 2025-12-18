@@ -1,59 +1,92 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion'; // Import Framer Motion
-import './login.css'; // Import the CSS file
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
+import "./login.css";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const LoginForm: React.FC = () => {
   const pathControls = useAnimation();
   const pathRef = useRef<SVGPathElement>(null);
 
+  // Controlled inputs
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  // Animate path on focus (your existing logic)
   useEffect(() => {
-    const emailInput = document.querySelector('#email') as HTMLInputElement;
-    const passwordInput = document.querySelector('#password') as HTMLInputElement;
-    const submitInput = document.querySelector('#submit') as HTMLInputElement;
+    const emailInput = document.querySelector("#email") as HTMLInputElement;
+    const passwordInput = document.querySelector("#password") as HTMLInputElement;
+    const submitInput = document.querySelector("#submit") as HTMLInputElement;
 
     const handleEmailFocus = () => {
       pathControls.start({
         strokeDashoffset: 0,
-        strokeDasharray: '240 1386',
-        transition: { duration: 0.7, ease: 'easeOut' }
+        strokeDasharray: "240 1386",
+        transition: { duration: 0.7, ease: "easeOut" },
       });
     };
 
     const handlePasswordFocus = () => {
       pathControls.start({
         strokeDashoffset: -336,
-        strokeDasharray: '240 1386',
-        transition: { duration: 0.7, ease: 'easeOut' }
+        strokeDasharray: "240 1386",
+        transition: { duration: 0.7, ease: "easeOut" },
       });
     };
 
     const handleSubmitFocus = () => {
       pathControls.start({
         strokeDashoffset: -730,
-        strokeDasharray: '530 1386',
-        transition: { duration: 0.7, ease: 'easeOut' }
+        strokeDasharray: "530 1386",
+        transition: { duration: 0.7, ease: "easeOut" },
       });
     };
 
-    if (emailInput) emailInput.addEventListener('focus', handleEmailFocus);
-    if (passwordInput) passwordInput.addEventListener('focus', handlePasswordFocus);
-    if (submitInput) submitInput.addEventListener('focus', handleSubmitFocus);
+    if (emailInput) emailInput.addEventListener("focus", handleEmailFocus);
+    if (passwordInput) passwordInput.addEventListener("focus", handlePasswordFocus);
+    if (submitInput) submitInput.addEventListener("focus", handleSubmitFocus);
 
-    // Cleanup
     return () => {
-      if (emailInput) emailInput.removeEventListener('focus', handleEmailFocus);
-      if (passwordInput) passwordInput.removeEventListener('focus', handlePasswordFocus);
-      if (submitInput) submitInput.removeEventListener('focus', handleSubmitFocus);
+      if (emailInput) emailInput.removeEventListener("focus", handleEmailFocus);
+      if (passwordInput) passwordInput.removeEventListener("focus", handlePasswordFocus);
+      if (submitInput) submitInput.removeEventListener("focus", handleSubmitFocus);
     };
   }, [pathControls]);
+
+  // Handle login
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+
+    // Call your API route (server-side bcrypt check)
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      if (data.role === "admin") {
+        window.location.href = "/admin/dashboard";
+      } else if (data.role === "nurse") {
+        window.location.href = "/Nurse/dashboard";
+      }
+    } else {
+      alert(data.error || "Login failed");
+    }
+  }
 
   return (
     <div className="page">
       <div className="container">
         <div className="left">
           <div className="login">Login</div>
-          <div className="eula">Welcome Nurse/Admin. Please login in to accses data.</div>
+          <div className="eula">Welcome Nurse/Admin. Please login to access data.</div>
         </div>
         <div className="right">
           <svg viewBox="0 0 320 300">
@@ -64,15 +97,10 @@ const LoginForm: React.FC = () => {
                 y1="193.49992"
                 x2="307"
                 y2="193.49992"
-                gradientUnits="userSpaceOnUse">
-                <stop
-                  style={{ stopColor: '#0f0ff0' }}
-                  offset="0"
-                  id="stop876" />
-                <stop
-                  style={{ stopColor: '#ff0000' }}
-                  offset="1"
-                  id="stop878" />
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop style={{ stopColor: "#0f0ff0" }} offset="0" />
+                <stop style={{ stopColor: "#ff0000" }} offset="1" />
               </linearGradient>
             </defs>
             <motion.path
@@ -84,20 +112,30 @@ const LoginForm: React.FC = () => {
               strokeDasharray="240 1386"
               strokeDashoffset="0"
               animate={pathControls}
-              initial={{ strokeDashoffset: 0, strokeDasharray: '240 1386' }}
+              initial={{ strokeDashoffset: 0, strokeDasharray: "240 1386" }}
             />
           </svg>
-          <div className="form">
-            <label htmlFor="email">User Type</label>
-            <input type="email" id="email" />
+          <form className="form" onSubmit={handleLogin}>
+            <label htmlFor="email">Username</label>
+            <input
+              type="text"
+              id="email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <input type="submit" id="submit" value="Submit" />
-          </div>
+          </form>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
-export default LoginForm;
+export default LoginForm; 
