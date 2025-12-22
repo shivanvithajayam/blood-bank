@@ -4,10 +4,23 @@ import Image from 'next/image';
 import './globals.css'; // Import layout-specific CSS
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const handleLogout = () => {
-    // Placeholder logout logic (e.g., clear tokens, redirect)
-    alert('Logged out!');
-    window.location.href = '/'; // Redirect to home/login page
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include", // 👈 ensures cookie is sent/cleared
+      });
+
+      if (res.ok) {
+        // Redirect to home after successful logout
+        window.location.href = "/";
+      } else {
+        alert("Logout failed");
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+      alert("Logout failed");
+    }
   };
 
   return (
