@@ -1,13 +1,14 @@
-export const runtime = "nodejs"; // ⭐ must be first (before imports)
+export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { Pool } from "pg";
+import { createClient } from "@supabase/supabase-js";
 
-// ✅ Use Supabase Postgres URL
-const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
-});
+// ✅ Supabase server client (no SSL issues)
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export async function POST(req: Request) {
   console.log("🔥 addnurse API hit");
@@ -22,50 +23,52 @@ export async function POST(req: Request) {
       );
     }
 
-    const client = await pool.connect();
+    // 🔐 Hash password
+    const password_hash = await bcrypt.hash(password, 10);
 
-    try {
-      const password_hash = await bcrypt.hash(password, 10);
+    // 1️⃣ Insert into nurse table
+    const { error: nurseError } = await supabase
+      .from("nurse")
+      .insert({
+        nurse_id,
+        nurse_name,
+        dept,
+      });
 
-      await client.query("BEGIN");
-
-      await client.query(
-        `INSERT INTO nurse (nurse_id, nurse_name, dept)
-         VALUES ($1, $2, $3)`,
-        [nurse_id, nurse_name, dept]
-      );
-
-      await client.query(
-        `INSERT INTO bloodbank_users (username, password_hash, role)
-         VALUES ($1, $2, 'nurse')`,
-        [nurse_id, password_hash]
-      );
-
-      await client.query("COMMIT");
-
+    if (nurseError) {
+      console.error("❌ Nurse insert error:", nurseError);
       return NextResponse.json(
-        { message: "Nurse added successfully" },
-        { status: 201 }
-      );
-    } catch (dbErr) {
-      await client.query("ROLLBACK");
-      console.error("Database error:", dbErr);
-      return NextResponse.json(
-        { error: dbErr instanceof Error ? dbErr.message : "DB error" },
+        { error: nurseError.message },
         { status: 500 }
       );
-      return NextResponse.json(
-        { error: "Failed to add nurse" },
-        { status: 500 }
-      );
-    } finally {
-      client.release();
     }
-  } catch (err) {
-    console.error("Request error:", err);
+
+    // 2️⃣ Insert into users table
+    const { error: userError } = await supabase
+      .from("bloodbank_users")
+      .insert({
+        username: nurse_id,
+        password_hash,
+        role: "nurse",
+      });
+
+    if (userError) {
+      console.error("❌ User insert error:", userError);
+      return NextResponse.json(
+        { error: userError.message },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { error: "Invalid request body" },
-      { status: 400 }
+      { message: "Nurse added successfully" },
+      { status: 201 }
+    );
+  } catch (err: any) {
+    console.error("❌ REQUEST ERROR:", err);
+    return NextResponse.json(
+      { error: err.message || "Server error" },
+      { status: 500 }
     );
   }
 }
