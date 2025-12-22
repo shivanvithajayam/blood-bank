@@ -4,7 +4,8 @@ import React, { useState, FormEvent } from "react";
 import "../newnurseadmin.css";
 
 // Change this if your backend URL is different
-const API_URL = "http://localhost:4000/api/nurses";
+const API_URL = "/api/addnurse";
+
 
 interface Nurse {
   id: number;
@@ -36,10 +37,13 @@ const AdminAddNursePage: React.FC = () => {
     }
 
     const body = {
-      name: name.trim(),
-      department: department.trim(),
-      location: location.trim(),
-      contact: contact.trim(), // sent as password
+
+  
+      nurse_name: name.trim(),
+      dept: department.trim(),
+      nurse_id: location.trim(),   // Nurse ID
+      password: contact.trim(),    // Password
+ // sent as password
     };
 
     try {
@@ -55,6 +59,9 @@ const AdminAddNursePage: React.FC = () => {
         setError(data.message || "Failed to save nurse");
         return;
       }
+
+      const created: Nurse = await res.json();
+      console.log("Created nurse:", created);
 
       setMessage("Nurse saved successfully!");
       setName("");
