@@ -1,21 +1,42 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
+
+interface Request {
+  request_id: string;
+  blood_type: string;
+  units_requested: number;
+  status: string;
+  request_date: string;
+}
 
 const RequestHistory: React.FC = () => {
-  // Mock data for request history
-  const historyData = [
-    { id: 1, bloodType: 'B+', amount: 15, status: 'Approved', date: '2023-09-15' },
-    { id: 2, bloodType: 'AB-', amount: 8, status: 'Pending', date: '2023-09-20' },
-    { id: 3, bloodType: 'O+', amount: 20, status: 'Denied', date: '2023-09-25' },
-    { id: 4, bloodType: 'A-', amount: 10, status: 'Approved', date: '2023-09-28' },
-    { id: 5, bloodType: 'AB+', amount: 5, status: 'Pending', date: '2023-10-01' },
-    { id: 6, bloodType: 'O-', amount: 12, status: 'Approved', date: '2023-10-05' },
-    { id: 7, bloodType: 'B-', amount: 7, status: 'Denied', date: '2023-10-10' },
-    { id: 8, bloodType: 'A+', amount: 18, status: 'Approved', date: '2023-10-12' },
-    { id: 9, bloodType: 'AB-', amount: 9, status: 'Pending', date: '2023-10-15' },
-    { id: 10, bloodType: 'O+', amount: 14, status: 'Approved', date: '2023-10-18' },
-    { id: 11, bloodType: 'B+', amount: 11, status: 'Denied', date: '2023-10-20' },
-    { id: 12, bloodType: 'A-', amount: 6, status: 'Approved', date: '2023-10-22' },
-  ];
+  const [historyData, setHistoryData] = useState<Request[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        const res = await fetch("/api/Nurse/history", {
+          method: "GET",
+          credentials: "include",
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          console.error("Error response:", text);
+          return;
+        }
+        const data = await res.json();
+        setHistoryData(data);
+      } catch (err) {
+        console.error("Network error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchHistory();
+  }, []);
+
+  if (loading) return <p>Loading request history...</p>;
 
   return (
     <table className="requests-table">
@@ -23,19 +44,19 @@ const RequestHistory: React.FC = () => {
         <tr>
           <th>ID</th>
           <th>Blood Type</th>
-          <th>Amount</th>
+          <th>Units</th>
           <th>Status</th>
           <th>Date</th>
         </tr>
       </thead>
       <tbody>
         {historyData.map((req) => (
-          <tr key={req.id}>
-            <td>{req.id}</td>
-            <td>{req.bloodType}</td>
-            <td>{req.amount}</td>
+          <tr key={req.request_id}>
+            <td>{req.request_id}</td>
+            <td>{req.blood_type}</td>
+            <td>{req.units_requested}</td>
             <td>{req.status}</td>
-            <td>{req.date}</td>
+            <td>{new Date(req.request_date).toLocaleDateString()}</td>
           </tr>
         ))}
       </tbody>
