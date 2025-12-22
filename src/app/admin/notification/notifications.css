@@ -122,3 +122,8 @@ h1 {
 .requests-table th {
   background-color: #f00f0f; /* Red */
 }
+.body-text {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 10px;
+}
