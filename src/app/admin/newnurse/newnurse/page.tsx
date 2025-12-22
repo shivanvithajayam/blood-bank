@@ -56,9 +56,6 @@ const AdminAddNursePage: React.FC = () => {
         return;
       }
 
-      const created: Nurse = await res.json();
-      console.log("Created nurse:", created);
-
       setMessage("Nurse saved successfully!");
       setName("");
       setDepartment("");
