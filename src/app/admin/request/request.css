@@ -83,10 +83,11 @@ h1 {
   color: black;
 }
 
-.status-select.accepted {
-  background-color: #5cb85c;
+.status-select.approved {
+  background-color: #5ac65a;
   color: white;
 }
+
 
 .status-select.rejected {
   background-color: #d9534f;

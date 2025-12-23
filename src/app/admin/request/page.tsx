@@ -1,49 +1,75 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './request.css';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 type RequestType = {
-  id: number;
-  date: string; // stored as YYYY-MM-DD
-  bloodType: string;
-  quantity: number;
-  status: 'Pending' | 'Accepted' | 'Rejected';
+  request_id: string;
+  request_date: string;
+  blood_type: string;
+  units_requested: number;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
 };
 
-// Initial data (stored in standard format)
-const initialRequests: RequestType[] = [
-  { id: 1, date: '2025-01-31', bloodType: 'B-', quantity: 5, status: 'Pending' },
-  { id: 2, date: '2025-05-24', bloodType: 'AB+', quantity: 2, status: 'Pending' },
-  { id: 3, date: '2025-03-12', bloodType: 'O+', quantity: 3, status: 'Accepted' },
-  { id: 4, date: '2025-04-15', bloodType: 'A-', quantity: 4, status: 'Rejected' },
-  { id: 5, date: '2025-06-20', bloodType: 'B+', quantity: 1, status: 'Pending' },
-  { id: 6, date: '2025-07-05', bloodType: 'O-', quantity: 6, status: 'Accepted' },
-  { id: 7, date: '2025-08-18', bloodType: 'AB-', quantity: 2, status: 'Rejected' },
-  { id: 8, date: '2025-09-22', bloodType: 'A+', quantity: 3, status: 'Pending' },
-  { id: 9, date: '2025-10-30', bloodType: 'B-', quantity: 4, status: 'Accepted' },
-  { id: 10, date: '2025-11-11', bloodType: 'O+', quantity: 5, status: 'Rejected' },
-  { id: 11, date: '2025-12-25', bloodType: 'A-', quantity: 1, status: 'Pending' },
-];
-
-// Formatter → DD-MM-YYYY
 const formatDate = (dateStr: string): string => {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}-${month}-${year}`;
+  return new Date(dateStr).toLocaleDateString('en-IN');
 };
 
 const Request = () => {
-  const [requests, setRequests] = useState<RequestType[]>(initialRequests);
+  const [requests, setRequests] = useState<RequestType[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleStatusChange = (
-    id: number,
+  // Fetch requests
+  useEffect(() => {
+    const fetchRequests = async () => {
+      const { data, error } = await supabase
+        .from('blood_requests')
+        .select('*')
+        .order('request_date', { ascending: false });
+
+      if (error) console.error(error);
+      else setRequests(data || []);
+
+      setLoading(false);
+    };
+
+    fetchRequests();
+  }, []);
+
+  // Update status
+  const handleStatusChange = async (
+    requestId: string,
     newStatus: RequestType['status']
   ) => {
-    const updated = requests.map((req) =>
-      req.id === id ? { ...req, status: newStatus } : req
+    const { error } = await supabase
+      .from('blood_requests')
+      .update({ status: newStatus })
+      .eq('request_id', requestId);
+
+    if (error) {
+      console.error('Update failed:', error);
+      alert('Failed to update status');
+      return;
+    }
+
+    setRequests((prev) =>
+      prev.map((req) =>
+        req.request_id === requestId
+          ? { ...req, status: newStatus }
+          : req
+      )
     );
-    setRequests(updated);
   };
+
+  if (loading) {
+    return <p style={{ color: 'white' }}>Loading requests...</p>;
+  }
 
   return (
     <div className="request-page">
@@ -61,26 +87,26 @@ const Request = () => {
         </thead>
 
         <tbody>
-          {requests.map((req) => (
-            <tr key={req.id}>
-              <td>{req.id}</td>
-              <td>{formatDate(req.date)}</td>
-              <td>{req.bloodType}</td>
-              <td>{req.quantity}</td>
+          {requests.map((req, index) => (
+            <tr key={req.request_id}>
+              <td>{index + 1}</td>
+              <td>{formatDate(req.request_date)}</td>
+              <td>{req.blood_type}</td>
+              <td>{req.units_requested}</td>
               <td>
                 <select
                   value={req.status}
                   onChange={(e) =>
                     handleStatusChange(
-                      req.id,
+                      req.request_id,
                       e.target.value as RequestType['status']
                     )
                   }
                   className={`status-select ${req.status.toLowerCase()}`}
                 >
-                  <option value="Pending">Pending</option>
-                  <option value="Accepted">Accepted</option>
-                  <option value="Rejected">Rejected</option>
+                  <option value="PENDING">Pending</option>
+                  <option value="APPROVED">Approved</option>
+                  <option value="REJECTED">Rejected</option>
                 </select>
               </td>
             </tr>
