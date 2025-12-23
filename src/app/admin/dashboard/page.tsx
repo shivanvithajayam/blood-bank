@@ -1,24 +1,58 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
+import { createClient } from '@supabase/supabase-js';
 import './Dashboard.css'; // Import dashboard-specific CSS
-// Ensure type declarations for CSS modules are available
 import BlurText from './BlurText';
-import Beams from '../../beams';
-const Dashboard: React.FC = () => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  // Sample data for blood types
-  const bloodData = [
-    { type: 'A+', available: 45 },
-    { type: 'A-', available: 30 },
-    { type: 'B+', available: 50 },
-    { type: 'B-', available: 25 },
-    { type: 'AB+', available: 20 },
-    { type: 'AB-', available: 15 },
-    { type: 'O+', available: 60 },
-    { type: 'O-', available: 35 },
-  ];
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+const Dashboard: React.FC = () => {
+  const [bloodData, setBloodData] = useState<any[]>([]);
+
+  // Fetch and aggregate data from Supabase
+  const fetchData = async () => {
+    const { data, error } = await supabase
+      .from('blood_inventories')
+      .select('blood_type, numofpints');
+
+    if (error) {
+      console.error('Error fetching blood inventories:', error);
+    } else {
+      // Aggregate by blood_type
+      const aggregated: Record<string, number> = {};
+      data.forEach((row: any) => {
+        if (!aggregated[row.blood_type]) {
+          aggregated[row.blood_type] = 0;
+        }
+        aggregated[row.blood_type] += row.numofpints;
+      });
+
+      // Convert to array for charts
+      setBloodData(
+        Object.entries(aggregated).map(([type, available]) => ({
+          type,
+          available,
+        }))
+      );
+    }
+  };
+
+  useEffect(() => {
+    // Initial fetch
+    fetchData();
+
+    // Refresh every 60 seconds
+    const interval = setInterval(fetchData, 60000);
+
+    // Cleanup on unmount
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -28,26 +62,21 @@ const Dashboard: React.FC = () => {
     e.currentTarget.style.setProperty('--y', `${y}%`);
   };
 
-  const handleAnimationComplete = () => {
-    console.log('Animation complete');
-  };
-
   return (
     <div className="dashboard">
       <div className="background-div" style={{ width: '100%', height: '600px' }}>
-        
+      </div>
 
-      </div>
       <div className="heading">
-      <BlurText
-        text="   Welcome to the Admin Dashboard!"
-        delay={150}
-        animateBy="words"
-        direction="top"
-        onAnimationComplete={handleAnimationComplete}
-      />
+        <BlurText
+          text="Welcome to the Admin Dashboard!"
+          delay={150}
+          animateBy="words"
+          direction="top"
+          onAnimationComplete={() => console.log('Animation complete')}
+        />
       </div>
-      
+
       <div className="content">
         <div className="charts">
           {bloodData.map((data, index) => (
@@ -61,7 +90,7 @@ const Dashboard: React.FC = () => {
                 <Pie
                   data={[
                     { name: 'Available', value: data.available },
-                    { name: 'Unavailable', value: 100 - data.available },
+                    { name: 'Remaining Capacity', value: Math.max(0, 200 - data.available) },
                   ]}
                   cx="50%"
                   cy="50%"
@@ -70,11 +99,11 @@ const Dashboard: React.FC = () => {
                   dataKey="value"
                   animationDuration={3000}
                 >
-                  <Cell fill="#0ff080" />
-                  <Cell fill="#f00f0f" />
+                  <Cell fill="#0ff080" /> {/* Available */}
+                  <Cell fill="#f00f0f" /> {/* Remaining */}
                 </Pie>
               </PieChart>
-              <div className="amount-tooltip">{data.available} units</div>
+              <div className="amount-tooltip">{data.available} / 200 units</div>
             </div>
           ))}
         </div>
