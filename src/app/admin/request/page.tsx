@@ -43,30 +43,39 @@ const Request = () => {
   }, []);
 
   // Update status
-  const handleStatusChange = async (
-  requestId: string,
-  newStatus: RequestType['status']
-) => {
-  const { error } = await supabase
-    .from('blood_requests')
-    .update({ status: newStatus })
-    .eq('request_id', requestId);
+  const handleStatusChange = async (requestId: string, newStatus: RequestType['status']) => {
+  if (newStatus === "APPROVED") {
+    // Call backend API instead of direct supabase update
+    const res = await fetch("/api/admin/approve", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId }),
+    });
 
-  if (error) {
-    console.error('Update failed:', error);
+    const result = await res.json();
+    if (!res.ok) {
+      alert(result.error || "Failed to approve request");
+      return;
+    }
 
-    // Show detailed error if available
-    const message = error.message || 'Failed to update status';
-    alert(message);
+    console.log("✅ Admin approval triggered:", result.message);
+  } else {
+    // For REJECTED, you can still update directly
+    const { error } = await supabase
+      .from("blood_requests")
+      .update({ status: newStatus })
+      .eq("request_id", requestId);
 
-    return;
+    if (error) {
+      console.error("Update failed:", error);
+      alert(error.message || "Failed to update status");
+      return;
+    }
   }
 
   setRequests((prev) =>
     prev.map((req) =>
-      req.request_id === requestId
-        ? { ...req, status: newStatus }
-        : req
+      req.request_id === requestId ? { ...req, status: newStatus } : req
     )
   );
 };
