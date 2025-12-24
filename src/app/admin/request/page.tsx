@@ -44,28 +44,32 @@ const Request = () => {
 
   // Update status
   const handleStatusChange = async (
-    requestId: string,
-    newStatus: RequestType['status']
-  ) => {
-    const { error } = await supabase
-      .from('blood_requests')
-      .update({ status: newStatus })
-      .eq('request_id', requestId);
+  requestId: string,
+  newStatus: RequestType['status']
+) => {
+  const { error } = await supabase
+    .from('blood_requests')
+    .update({ status: newStatus })
+    .eq('request_id', requestId);
 
-    if (error) {
-      console.error('Update failed:', error);
-      alert('Failed to update status');
-      return;
-    }
+  if (error) {
+    console.error('Update failed:', error);
 
-    setRequests((prev) =>
-      prev.map((req) =>
-        req.request_id === requestId
-          ? { ...req, status: newStatus }
-          : req
-      )
-    );
-  };
+    // Show detailed error if available
+    const message = error.message || 'Failed to update status';
+    alert(message);
+
+    return;
+  }
+
+  setRequests((prev) =>
+    prev.map((req) =>
+      req.request_id === requestId
+        ? { ...req, status: newStatus }
+        : req
+    )
+  );
+};
 
   if (loading) {
     return <p style={{ color: 'white' }}>Loading requests...</p>;
@@ -103,6 +107,7 @@ const Request = () => {
                     )
                   }
                   className={`status-select ${req.status.toLowerCase()}`}
+                  disabled={req.status !== 'PENDING'} // 🔒 lock once approved/rejected
                 >
                   <option value="PENDING">Pending</option>
                   <option value="APPROVED">Approved</option>
